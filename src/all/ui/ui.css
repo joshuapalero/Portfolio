@@ -1,0 +1,337 @@
+/* Accessible, GPU-accelerated UI Shimmer & Skeleton Animations */
+
+@keyframes ui-skeleton-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes ui-skeleton-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@keyframes ui-spinner-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Base Skeleton Styles */
+.ui-skeleton {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background-color: var(--border-color, rgba(125, 125, 125, 0.15));
+  user-select: none;
+  pointer-events: none;
+}
+
+body.theme-dark .ui-skeleton,
+.theme-dark .ui-skeleton {
+  background-color: var(--border-color, rgba(255, 255, 255, 0.08));
+}
+
+/* Skeleton Variants */
+.ui-skeleton--text {
+  height: 14px;
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.ui-skeleton--circular {
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.ui-skeleton--rounded {
+  border-radius: 5px;
+}
+
+.ui-skeleton--rectangular {
+  border-radius: 0;
+}
+
+/* Shimmer Animation Effect */
+.ui-skeleton--shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.ui-skeleton--shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.4) 30%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.4) 70%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: ui-skeleton-shimmer 1.8s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+body.theme-dark .ui-skeleton--shimmer::after,
+.theme-dark .ui-skeleton--shimmer::after {
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.06) 30%,
+    rgba(255, 255, 255, 0.12) 50%,
+    rgba(255, 255, 255, 0.06) 70%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+/* Pulse Animation Effect */
+.ui-skeleton--pulse {
+  animation: ui-skeleton-pulse 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Accessibility: WCAG 2.2 prefers-reduced-motion override */
+@media (prefers-reduced-motion: reduce) {
+  .ui-skeleton--shimmer::after {
+    animation: none !important;
+    display: none !important;
+  }
+
+  .ui-skeleton--pulse {
+    animation: none !important;
+    opacity: 0.6 !important;
+  }
+
+  .ui-spinner-ring {
+    animation-duration: 4s !important;
+  }
+}
+
+/* Accessible Screen Reader Utility */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border-width: 0 !important;
+}
+
+/* Accessible Spinner Component */
+.ui-spinner-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.ui-spinner-ring {
+  display: inline-block;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: currentColor transparent transparent transparent;
+  animation: ui-spinner-rotate 0.75s linear infinite;
+  box-sizing: border-box;
+}
+
+.ui-spinner--sm .ui-spinner-ring {
+  width: 14px;
+  height: 14px;
+  border-width: 2px;
+}
+
+.ui-spinner--md .ui-spinner-ring {
+  width: 20px;
+  height: 20px;
+  border-width: 2.5px;
+}
+
+.ui-spinner--lg .ui-spinner-ring {
+  width: 28px;
+  height: 28px;
+  border-width: 3px;
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════
+   Section History Footer (Mirrors Blog Post Detail Footer Pattern)
+   ═════════════════════════════════════════════════════════════════════════════ */
+.section-history-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  padding-top: 24px;
+  margin-top: 32px;
+  margin-bottom: 48px;
+  border-top: 1px solid var(--border-color);
+}
+
+.section-footer-ext-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0;
+  background: transparent;
+  border: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.section-footer-ext-link:hover {
+  color: var(--accent-color);
+  transform: translateX(3px);
+}
+
+.section-footer-platform-icon {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.section-footer-ext-link:hover .section-footer-platform-icon {
+  transform: scale(1.1);
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════
+   Hardware-Accelerated Monochromatic Card & Button System
+   - Zero layout thrashing (uses CSS containment: layout style paint)
+   - Zero repaint on hover (elevates via ::after opacity on GPU compositor thread)
+   - Low memory footprint (no persistent will-change layer allocations)
+   ═════════════════════════════════════════════════════════════════════════════ */
+
+.monochrome-card {
+  position: relative;
+  background-color: var(--card-surface);
+  border: 1px solid var(--card-surface-border);
+  box-shadow: var(--card-surface-highlight);
+  border-radius: 12px;
+  padding: 24px;
+  contain: layout style paint;
+  transition: border-color 0.15s cubic-bezier(0.16, 1, 0.3, 1), transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* GPU-composited elevation shadow: uses opacity transition on ::after to prevent CPU repainting */
+.monochrome-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: var(--card-surface-shadow-hover);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.monochrome-card:hover {
+  border-color: var(--card-surface-border-hover);
+}
+
+.monochrome-card:hover::after {
+  opacity: 1;
+}
+
+/* Primary Button (Inverted Solid Pop: Black in Light, White in Dark) */
+.btn-primary {
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--btn-primary-fg) !important;
+  background-color: var(--btn-primary-bg) !important;
+  border: 1px solid var(--btn-primary-border) !important;
+  box-shadow: var(--btn-primary-shadow);
+  border-radius: 7px;
+  padding: 9px 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  transition: background-color 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-primary:hover {
+  background-color: var(--btn-primary-hover-bg) !important;
+  color: var(--btn-primary-hover-fg) !important;
+}
+
+.btn-primary:active {
+  background-color: var(--btn-primary-active-bg) !important;
+  transform: scale(0.98);
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* Secondary Button (Structured White in Light Mode, Translucent Inset in Dark Mode) */
+.btn-secondary {
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--btn-secondary-fg) !important;
+  background-color: var(--btn-secondary-bg) !important;
+  border: 1px solid var(--btn-secondary-border) !important;
+  box-shadow: var(--btn-secondary-shadow);
+  border-radius: 7px;
+  padding: 9px 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  transition: background-color 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-secondary:hover {
+  background-color: var(--btn-secondary-hover-bg) !important;
+  border-color: var(--btn-secondary-hover-border) !important;
+  color: var(--btn-secondary-hover-fg) !important;
+}
+
+.btn-secondary:active {
+  background-color: var(--btn-secondary-active-bg) !important;
+  transform: scale(0.98);
+}
+
+.btn-secondary:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+

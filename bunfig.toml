@@ -1,0 +1,11 @@
+[install]
+peer = true
+production = false
+exact = false
+
+[test]
+root = "./src"
+preload = ["./bun-setup.ts"]
+
+[run]
+bun = true

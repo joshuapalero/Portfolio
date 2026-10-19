@@ -1,0 +1,75 @@
+.profile-photo-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: var(--border-color);
+  display: flex;
+  cursor: pointer;
+  user-select: none;
+}
+
+.profile-photo-transition {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.profile-photo-skeleton-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.profile-photo-skeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 5px;
+}
+
+.profile-photo-spinner-overlay {
+  position: relative;
+  z-index: 11;
+  color: var(--text-muted);
+  opacity: 0.85;
+}
+
+.profile-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+  display: block;
+  transition: opacity 0.35s ease, filter 0.35s ease;
+}
+
+.profile-photo.loading {
+  opacity: 0;
+}
+
+.profile-photo.loaded {
+  opacity: 1;
+}
+
+.profile-photo-alt {
+  object-position: center;
+  filter: grayscale(100%) contrast(1.05);
+}
+
+

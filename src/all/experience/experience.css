@@ -1,0 +1,510 @@
+/* ── Bryl Lim Experience Section Style ────────────────────────────── */
+.experience-section {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* ── Header: 03 — Experience       FULL HISTORY → ────────────────── */
+.experience-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 16px;
+  gap: 16px;
+}
+
+.experience-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.experience-subtitle {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: 620px;
+}
+
+.experience-subtitle-skeleton {
+  margin-top: 2px;
+}
+
+.experience-title-label,
+.experience-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+body.theme-dark .experience-title-label,
+.theme-dark .experience-title-label,
+body.theme-dark .experience-title,
+.theme-dark .experience-title {
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+.experience-title-label .experience-word,
+.experience-title-label .experience-title-word,
+.experience-title .experience-word,
+.experience-title .experience-title-word {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.experience-history-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 0 0 0;
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 0.825rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+body.theme-dark .experience-history-link,
+.theme-dark .experience-history-link {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  text-shadow: none;
+}
+
+body.theme-light .experience-history-link,
+:root .experience-history-link {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+}
+
+.experience-history-link:hover {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+}
+
+.history-arrow {
+  display: inline-block;
+  transition: transform 0.15s ease;
+}
+
+.experience-history-link:hover .history-arrow {
+  transform: translateX(2px);
+}
+
+/* ── Table Container: divide-y border-y ────────────────────────────── */
+.experience-table {
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.experience-row-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.experience-row-container:last-child {
+  border-bottom: none;
+}
+
+/* ── Individual Row (grid grid-cols-12 items-baseline gap-3 py-2.5) ─ */
+.experience-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: center;
+  gap: 12px;
+  padding: 10px 4px;
+  box-sizing: border-box;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.15s ease;
+}
+
+.experience-row:hover,
+.experience-row.active {
+  background-color: var(--badge-bg);
+}
+
+@media (max-width: 480px) {
+  .experience-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    padding: 10px 6px;
+  }
+}
+
+.experience-col-year {
+  grid-column: span 3 / span 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 2.5px 8px;
+  border-radius: 5px;
+  background-color: var(--badge-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+
+@media (min-width: 640px) {
+  .experience-col-year {
+    grid-column: span 2 / span 2;
+  }
+}
+
+body.theme-dark .experience-col-year,
+.theme-dark .experience-col-year {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+body.theme-light .experience-col-year,
+.theme-light .experience-col-year {
+  color: #111827;
+  background-color: #f3f4f6;
+  border-color: #e5e7eb;
+}
+
+.experience-row:hover .experience-col-year,
+.experience-row.active .experience-col-year {
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+  background-color: var(--badge-hover);
+  transform: translateY(-0.5px);
+}
+
+.experience-row--skeleton .experience-col-year {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.experience-col-role {
+  grid-column: span 9 / span 9;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+@media (min-width: 640px) {
+  .experience-col-role {
+    grid-column: span 6 / span 6;
+  }
+}
+
+.experience-col-company {
+  grid-column: span 12 / span 12;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+@media (min-width: 640px) {
+  .experience-col-company {
+    grid-column: span 4 / span 4;
+    text-align: right;
+  }
+}
+
+/* ── Expanded Exact Documentation Body ─────────────────────────────── */
+.experience-expanded-body {
+  padding: 10px 14px 16px 14px;
+  margin: 0 4px 8px 4px;
+  border-radius: 5px;
+  background: var(--badge-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: fadeInDown 0.18s ease;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.experience-tag-line {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.03em;
+}
+
+.experience-meta-line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.meta-sep {
+  color: var(--border-hover);
+}
+
+.experience-period {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 1px 6px;
+  border-radius: 5px;
+}
+
+.experience-repo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: var(--text-primary);
+  text-decoration: underline;
+  font-weight: 500;
+  font-size: 11px;
+}
+
+.experience-repo-link:hover {
+  color: var(--text-primary);
+  opacity: 0.8;
+}
+
+.experience-project-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 2px;
+}
+
+.experience-text-list {
+  list-style-type: disc;
+  padding-left: 18px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.experience-text-list li {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+.experience-skills-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.experience-skill-badge {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  padding: 2px 7px;
+  border-radius: 5px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+/* ── Aurora Scharff Skeleton Loading & Non-Disruptive Micro-Loader ── */
+.experience-revalidating-wrapper {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 6px;
+  color: var(--text-muted);
+}
+
+.experience-revalidating-spinner {
+  opacity: 0.75;
+}
+
+.experience-loading-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.experience-row--skeleton {
+  pointer-events: none;
+  cursor: default !important;
+}
+
+.experience-row--skeleton:hover {
+  background-color: transparent;
+}
+
+.experience-skeleton-company-text {
+  margin-left: auto;
+}
+
+/* ── Live Empty State from GitHub (matching Certifications) ────────── */
+.experience-empty-container {
+  padding: 16px 4px;
+}
+
+.experience-empty-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: 5px;
+  background: var(--badge-bg);
+  border: 1px dashed var(--border-color);
+}
+
+.experience-empty-icon {
+  color: #3b82f6;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.experience-empty-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.experience-empty-title {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.experience-empty-desc {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.experience-empty-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: underline;
+  width: fit-content;
+  transition: opacity 0.15s ease;
+}
+
+.experience-empty-btn:hover {
+  opacity: 0.8;
+}
+
+/* ── Resilient Error State & Recovery (Aurora Scharff Pattern) ─────── */
+.experience-error-container {
+  padding: 16px 4px;
+}
+
+.experience-error-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 5px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+.experience-error-icon {
+  color: #ef4444;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.experience-error-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.experience-error-title {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.experience-error-desc {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.experience-retry-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 4px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: fit-content;
+  transition: all 0.15s ease;
+}
+
+.experience-retry-btn:hover {
+  background: var(--badge-bg);
+  border-color: transparent;
+  color: var(--text-primary);
+}

@@ -1,0 +1,21 @@
+# Joshua Pasacay Palero
+
+> Full-stack software engineer based in Metro Manila, Philippines. Building high-performance web applications, distributed services, and cloud solutions.
+
+## Summary
+- **Role**: Software Engineer & Full-Stack Developer
+- **Location**: Metro Manila, Philippines
+- **Primary Skills**: React 19, TypeScript, Node.js, Go, Cloudflare Workers, PostgreSQL, Distributed Systems, Modern Frontend Engineering.
+- **GitHub**: https://github.com/joshuapalero
+- **LinkedIn**: https://linkedin.com/in/joshuapalero
+- **Contact**: joshuapalero111@gmail.com
+
+## Main Portfolio Sections
+- [Projects](https://joshuapalero.com/projects): Open source software, web apps, and systems.
+- [Experience](https://joshuapalero.com/experience): Career timeline, engineering roles, and achievements.
+- [Certifications](https://joshuapalero.com/certifications): Software engineering credentials and industry licenses.
+- [Recommendations](https://joshuapalero.com/recommendations): Peer testimonials and client endorsements.
+- [Blog](https://joshuapalero.com/blog): Technical notes, architecture write-ups, and engineering thoughts.
+- [Resources](https://joshuapalero.com/resources): Curated developer guides and roadmaps.
+- [Resume](https://joshuapalero.com/resume): Official curriculum vitae and downloadable PDF.
+- [Technology Stack](https://joshuapalero.com/tech-stack): Languages, frameworks, databases, and developer tools.

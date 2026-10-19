@@ -1,0 +1,31 @@
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="48" fill="#121212" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="50" cy="50" r="44" fill="#1e1e1e"/>
+  <!-- Kisuke Urahara - Boy 2 (Former Squad 12 Captain) -->
+  <path d="M20 96 C20 78 32 72 44 70 L56 70 C68 72 80 78 80 96 Z" fill="#000000" stroke="#ffffff" stroke-width="1.5"/>
+  <path d="M42 70 L50 84 L58 70" fill="#ffffff"/>
+  <polygon points="46,74 50,78 46,82 42,78" fill="#000000"/>
+  <polygon points="54,74 58,78 54,82 50,78" fill="#000000"/>
+  <line x1="50" y1="84" x2="50" y2="96" stroke="#ffffff" stroke-width="1.5"/>
+  <path d="M44 60 L44 72 L56 72 L56 60 Z" fill="#ffffff"/>
+  <path d="M34 44 C34 58 42 67 50 67 C58 67 66 58 66 44 L66 38 L34 38 Z" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <path d="M26 44 C26 56 30 64 34 68 C33 60 32 50 32 44 Z" fill="#000000"/>
+  <path d="M74 44 C74 56 70 64 66 68 C67 60 68 50 68 44 Z" fill="#000000"/>
+  <path d="M36 44 L40 54 L44 44 L48 52 L52 44 L56 54 L60 44 L64 52" fill="#000000"/>
+  <!-- Striped Bucket Hat -->
+  <path d="M30 36 C30 18 40 12 50 12 C60 12 70 18 70 36 Z" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <path d="M36 36 C36 24 40 16 42 13 L45 13 C43 18 41 26 41 36 Z" fill="#000000"/>
+  <path d="M48 36 L48 12 L52 12 L52 36 Z" fill="#000000"/>
+  <path d="M59 36 C59 26 57 18 55 13 L58 13 C60 16 64 24 64 36 Z" fill="#000000"/>
+  <ellipse cx="50" cy="37" rx="28" ry="7" fill="#000000" stroke="#ffffff" stroke-width="1.5"/>
+  <path d="M34 38 Q50 48 66 38 L66 48 Q50 56 34 48 Z" fill="#000000" opacity="0.45"/>
+  <path d="M40 48 Q44 46 47 48" stroke="#000000" stroke-width="2"/>
+  <circle cx="43.5" cy="50" r="1.5" fill="#000000"/>
+  <path d="M60 48 Q56 46 53 48" stroke="#000000" stroke-width="2"/>
+  <circle cx="56.5" cy="50" r="1.5" fill="#000000"/>
+  <path d="M49 55 L51 57 L49 58" stroke="#000000" stroke-width="1.2"/>
+  <path d="M44 62 Q50 66 56 61" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="48" cy="65" r="0.6" fill="#000000"/>
+  <circle cx="50" cy="65.5" r="0.6" fill="#000000"/>
+  <circle cx="52" cy="65" r="0.6" fill="#000000"/>
+</svg>

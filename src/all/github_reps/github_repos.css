@@ -1,0 +1,674 @@
+:root,
+body.theme-light {
+  --gh-bg: #ffffff;
+  --gh-border: #e5e7eb;
+  --gh-border-muted: #f3f4f6;
+  --gh-text-primary: #000000;
+  --gh-text-secondary: #000000;
+  --gh-text-muted: #000000;
+  --gh-link: #000000;
+  --gh-link-hover: #525252;
+  --gh-btn-bg: #f9fafb;
+  --gh-btn-hover: #f3f4f6;
+  --gh-btn-active: #000000;
+  --gh-btn-active-text: #ffffff;
+  --gh-year-hover: #f3f4f6;
+  --gh-chart-line: #737373;
+  --gh-chart-point: #000000;
+  --gh-tooltip-bg: #000000;
+  --gh-tooltip-text: #ffffff;
+  --gh-heat-0: #ebedf0;
+  --gh-heat-1: #9be9a8;
+  --gh-heat-2: #40c463;
+  --gh-heat-3: #30a14e;
+  --gh-heat-4: #216e39;
+  --gh-heat-border: rgba(0, 0, 0, 0.06);
+}
+
+body.theme-dark,
+.theme-dark {
+  --gh-bg: #000000;
+  --gh-border: #27272a;
+  --gh-border-muted: #18181b;
+  --gh-text-primary: #ffffff;
+  --gh-text-secondary: #ffffff;
+  --gh-text-muted: #ffffff;
+  --gh-link: #ffffff;
+  --gh-link-hover: #d4d4d8;
+  --gh-btn-bg: rgba(255, 255, 255, 0.08);
+  --gh-btn-hover: rgba(255, 255, 255, 0.15);
+  --gh-btn-active: #ffffff;
+  --gh-btn-active-text: #000000;
+  --gh-year-hover: rgba(255, 255, 255, 0.12);
+  --gh-chart-line: #71717a;
+  --gh-chart-point: #ffffff;
+  --gh-tooltip-bg: #18181b;
+  --gh-tooltip-text: #ffffff;
+  --gh-heat-0: #141414;
+  --gh-heat-1: #0e4429;
+  --gh-heat-2: #006d32;
+  --gh-heat-3: #26a641;
+  --gh-heat-4: #39d353;
+  --gh-heat-border: rgba(255, 255, 255, 0.05);
+}
+
+.gh-container {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-sans);
+  color: var(--gh-text-primary);
+  margin: 0;
+  padding: 0;
+}
+
+.gh-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.gh-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary, #737373);
+  margin-top: -12px;
+  margin-bottom: 32px;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+.gh-title-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+}
+
+body.theme-dark .gh-title-label,
+.theme-dark .gh-title-label {
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+.gh-word {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.gh-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.gh-contributions-count {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--gh-text-primary);
+  margin: 0;
+}
+
+.gh-settings-wrapper {
+  position: relative;
+}
+
+.gh-settings-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: var(--gh-text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 5px;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.gh-settings-button:hover {
+  color: var(--gh-link);
+  background-color: var(--gh-btn-hover);
+}
+
+.gh-settings-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 100;
+  width: 220px;
+  background: var(--gh-bg);
+  border: 1px solid var(--gh-border);
+  border-radius: 5px;
+  padding: 6px 0;
+  list-style: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  animation: ghFadeIn 0.15s ease-out;
+}
+
+@keyframes ghFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gh-dropdown-header {
+  padding: 6px 14px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--gh-text-muted);
+}
+
+.gh-dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  color: var(--gh-text-primary);
+  cursor: pointer;
+  transition: background-color 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.gh-dropdown-item:hover {
+  background-color: var(--gh-btn-hover);
+}
+
+.gh-dropdown-checkbox {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--gh-link);
+  cursor: pointer;
+}
+
+.gh-main-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  width: 100%;
+}
+
+@media (min-width: 860px) {
+  .gh-main-layout {
+    grid-template-columns: 1fr 80px;
+    align-items: start;
+  }
+}
+
+.gh-card {
+  background-color: var(--gh-bg);
+  border: 1px solid var(--gh-border);
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.gh-heatmap-section {
+  padding: 16px 18px 12px;
+}
+
+.gh-heatmap-overflow {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gh-border) transparent;
+}
+
+.gh-heatmap-overflow::-webkit-scrollbar {
+  height: 4px;
+}
+
+.gh-heatmap-overflow::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.gh-heatmap-overflow::-webkit-scrollbar-thumb {
+  background: var(--gh-border);
+  border-radius: 5px;
+}
+
+.gh-heatmap-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 680px;
+}
+
+.gh-months-row {
+  display: grid;
+  grid-template-columns: repeat(53, 1fr);
+  height: 16px;
+  font-size: 11px;
+  color: var(--gh-text-secondary);
+  margin-bottom: 6px;
+  margin-left: 28px;
+  position: relative;
+}
+
+.gh-month-label {
+  position: absolute;
+  top: 0;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.gh-grid-wrapper {
+  display: flex;
+  gap: 6px;
+}
+
+.gh-weekdays-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 98px;
+  width: 22px;
+  font-size: 10px;
+  color: var(--gh-text-secondary);
+  padding-top: 13px;
+  padding-bottom: 12px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.gh-weekday-label {
+  line-height: 10px;
+}
+
+.gh-graph-weeks {
+  display: flex;
+  flex: 1;
+  gap: 3px;
+}
+
+.gh-graph-column {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.gh-graph-cell {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+  touch-action: manipulation;
+  transition: transform 0.1s ease, outline 0.1s ease;
+  border: 1px solid var(--gh-heat-border);
+}
+
+.gh-graph-cell:hover {
+  outline: 1.5px solid var(--gh-text-secondary);
+  outline-offset: -1px;
+  transform: scale(1.2);
+  z-index: 10;
+}
+
+.gh-cell-lvl-0 { background-color: var(--gh-heat-0); }
+.gh-cell-lvl-1 { background-color: var(--gh-heat-1); }
+.gh-cell-lvl-2 { background-color: var(--gh-heat-2); }
+.gh-cell-lvl-3 { background-color: var(--gh-heat-3); }
+.gh-cell-lvl-4 { background-color: var(--gh-heat-4); }
+
+.gh-heatmap-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding-left: 28px;
+  font-size: 12px;
+  color: var(--gh-text-secondary);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.gh-learn-link {
+  color: var(--gh-text-secondary);
+  text-decoration: none;
+  font-size: 12px;
+  transition: color 0.15s;
+}
+
+.gh-learn-link:hover {
+  color: var(--gh-link);
+  text-decoration: underline;
+}
+
+.gh-legend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.gh-legend-label {
+  font-size: 11px;
+  margin: 0 2px;
+}
+
+.gh-legend-cells {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.gh-legend-cells .gh-graph-cell {
+  cursor: default;
+}
+
+.gh-legend-cells .gh-graph-cell:hover {
+  transform: none;
+  outline: none;
+}
+
+.gh-card-divider {
+  border: none;
+  border-top: 1px solid var(--gh-border);
+  margin: 0;
+  width: 100%;
+}
+
+.gh-overview-section {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .gh-overview-section {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.gh-overview-left {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--gh-border);
+}
+
+@media (min-width: 640px) {
+  .gh-overview-left {
+    border-bottom: none;
+    border-right: 1px solid var(--gh-border);
+  }
+}
+
+.gh-overview-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--gh-text-primary);
+  margin-bottom: 16px;
+}
+
+.gh-contributed-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.gh-repo-icon {
+  color: var(--gh-text-secondary);
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.gh-contributed-content {
+  font-size: 0.875rem;
+  color: var(--gh-text-primary);
+  line-height: 1.5;
+}
+
+.gh-contributed-label {
+  color: var(--gh-text-primary);
+}
+
+.gh-repo-link {
+  color: var(--gh-link);
+  text-decoration: none;
+  font-weight: 600;
+  transition: text-decoration 0.15s, -webkit-text-decoration 0.15s;
+}
+
+.gh-repo-link:hover {
+  text-decoration: underline;
+}
+
+.gh-overview-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 20px;
+  min-height: 160px;
+}
+
+.gh-quadrant-chart {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  overflow: visible;
+}
+
+.gh-chart-label {
+  font-size: 11px;
+  fill: var(--gh-text-secondary);
+  font-family: inherit;
+}
+
+.gh-chart-commits-bold {
+  font-weight: 600;
+  fill: var(--gh-text-primary);
+}
+
+.gh-chart-axis-line {
+  stroke: var(--gh-chart-line);
+  stroke-width: 1.75px;
+}
+
+.gh-chart-active-line {
+  stroke: var(--gh-chart-line);
+  stroke-width: 2.25px;
+  stroke-linecap: round;
+}
+
+.gh-chart-dot {
+  fill: var(--gh-chart-point);
+  stroke: var(--gh-bg);
+  stroke-width: 2px;
+  transition: all 0.2s ease;
+}
+
+.gh-chart-dot:hover {
+  r: 5.5;
+}
+
+.gh-year-sidebar {
+  display: flex;
+  flex-flow: wrap;
+  gap: 6px;
+}
+
+@media (min-width: 860px) {
+  .gh-year-sidebar {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+.gh-year-button {
+  background: transparent;
+  border: none;
+  color: var(--gh-text-secondary);
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+
+.gh-year-button:hover {
+  background-color: var(--gh-year-hover);
+  color: var(--gh-text-primary);
+}
+
+.gh-year-button.active {
+  background-color: var(--gh-btn-active);
+  color: var(--gh-btn-active-text);
+  font-weight: 600;
+}
+
+.gh-activity-section {
+  width: 100%;
+  margin-top: 24px;
+}
+
+.gh-activity-header-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gh-text-primary);
+  margin-bottom: 16px;
+}
+
+.gh-timeline-month-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.gh-timeline-month-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gh-text-primary);
+  white-space: nowrap;
+}
+
+.gh-timeline-line {
+  flex: 1;
+  border: none;
+  border-top: 1px solid var(--gh-border);
+}
+
+.gh-empty-activity {
+  text-align: center;
+  padding: 32px 16px;
+  color: var(--gh-text-secondary);
+  font-size: 0.875rem;
+}
+
+.gh-activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.gh-activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  background-color: var(--gh-bg);
+  border: 1px solid var(--gh-border);
+  border-radius: 5px;
+}
+
+.gh-activity-item-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--gh-text-primary);
+}
+
+.gh-activity-item-desc {
+  font-size: 0.8rem;
+  color: var(--gh-text-secondary);
+  margin-top: 2px;
+}
+
+.gh-load-more-btn {
+  display: block;
+  width: 100%;
+  padding: 9px 16px;
+  background-color: transparent;
+  border: 1px solid var(--gh-border, var(--border-color, #e5e7eb));
+  border-radius: 5px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--gh-text-primary);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s ease;
+}
+
+.gh-load-more-btn:hover {
+  background-color: var(--gh-btn-hover);
+  border-color: var(--border-hover, var(--gh-border));
+}
+
+.gh-load-more-btn:active {
+  transform: scale(0.99);
+}
+
+.gh-tooltip {
+  position: fixed;
+  z-index: 1000;
+  padding: 5px 9px;
+  font-size: 11px;
+  background-color: var(--gh-tooltip-bg);
+  color: var(--gh-tooltip-text);
+  border-radius: 5px;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  transform: translate(-50%, -100%) translateY(-6px);
+  transition: opacity 0.1s ease;
+}
+
+.gh-tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 4px 4px 0 4px;
+  border-style: solid;
+  border-color: var(--gh-tooltip-bg) transparent transparent transparent;
+}
+
+/* Zero-CLS GitHub Heatmap & Activity Overview Skeleton */
+.gh-cell-skeleton {
+  cursor: default !important;
+  background-color: var(--gh-heat-0) !important;
+  border-color: var(--gh-heat-border) !important;
+}
+
+.gh-cell-skeleton:hover {
+  outline: none !important;
+  transform: none !important;
+}
+
+.gh-skeleton-months-row {
+  display: flex;
+  justify-content: space-between;
+  height: 16px;
+  margin-bottom: 6px;
+  margin-left: 28px;
+}
+

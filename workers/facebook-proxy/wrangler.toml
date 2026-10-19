@@ -1,0 +1,32 @@
+name = "facebook-proxy"
+main = "src/index.ts"
+compatibility_date = "2024-09-01"
+workers_dev = true
+preview_urls = true
+
+# ── Secrets ──────────────────────────────────────────────────────────────────
+# Do NOT put your tokens here. Set them as encrypted secrets:
+#
+#   cd workers/facebook-proxy
+#   npx wrangler secret put FB_PAGE_ID
+#   npx wrangler secret put FB_PAGE_ACCESS_TOKEN
+#
+# Upstash Redis Secrets (para sa 100% accurate global live viewers):
+#   npx wrangler secret put UPSTASH_REDIS_REST_URL
+#   npx wrangler secret put UPSTASH_REDIS_REST_TOKEN
+#
+# GitHub Token Secret (rate limit shield: 60 req/hr -> 5,000 req/hr + edge cached):
+#   npx wrangler secret put GITHUB_TOKEN
+#
+# Optionally restrict CORS to your portfolio domain:
+#   npx wrangler secret put ALLOWED_ORIGIN
+#   (enter: https://your-portfolio-domain.com)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── Cloudflare D1 Database Binding (Permanent Recommendations) ───────────────
+[[d1_databases]]
+binding = "DB"
+database_name = "portfolio-db"
+database_id = "17a4ff2c-32fe-46cc-9dab-49f7fd7ce3d4"
+
+

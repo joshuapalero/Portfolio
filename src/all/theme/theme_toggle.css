@@ -1,0 +1,313 @@
+/* ── Modern Segmented Icon-Only Theme Switcher ──────────────────────────────── */
+.theme-switcher-wrapper {
+  position: fixed;
+  top: max(18px, env(safe-area-inset-top));
+  right: max(20px, env(safe-area-inset-right));
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+}
+
+.theme-switcher-wrapper.is-embedded {
+  position: static;
+  top: auto;
+  right: auto;
+  z-index: auto;
+  display: inline-flex;
+}
+
+.theme-switcher {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+body.theme-dark .theme-switcher,
+.theme-dark .theme-switcher {
+  background-color: rgba(26, 26, 26, 0.85);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Sliding Active Indicator Pill ────────────────────────────────────────── */
+.theme-switcher-indicator {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.06);
+  pointer-events: none;
+  z-index: 1;
+  transform: translateX(calc(var(--active-index, 0) * 33px));
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+body.theme-dark .theme-switcher-indicator,
+.theme-dark .theme-switcher-indicator {
+  background-color: #262626;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Individual Icon Button */
+.theme-switcher-btn {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--text-secondary);
+  opacity: 0.65;
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.theme-switcher-btn:hover {
+  opacity: 1;
+  color: var(--text-primary);
+}
+
+.theme-switcher-btn.active {
+  opacity: 1;
+}
+
+/* Icon Styles & Micro-Animations */
+.theme-btn-icon {
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
+}
+
+.theme-switcher-btn:hover .theme-btn-icon {
+  transform: scale(1.12);
+}
+
+/* Active Icon Color */
+.theme-switcher-btn.active .theme-btn-icon {
+  color: var(--text-primary);
+}
+
+body.theme-dark .theme-switcher-btn.active .theme-btn-icon,
+.theme-dark .theme-switcher-btn.active .theme-btn-icon {
+  color: #ffffff;
+}
+
+/* Micro-animations on active icons */
+.theme-switcher-btn.active.theme-switcher-light .theme-btn-icon {
+  animation: sunRotate 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-switcher-btn.active.theme-switcher-dark .theme-btn-icon {
+  animation: moonTilt 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-switcher-btn.active.theme-switcher-system .theme-btn-icon {
+  animation: monitorPulse 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes sunRotate {
+  0% {
+    transform: rotate(-60deg) scale(0.85);
+  }
+  60% {
+    transform: rotate(20deg) scale(1.15);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes moonTilt {
+  0% {
+    transform: rotate(40deg) scale(0.85);
+  }
+  60% {
+    transform: rotate(-15deg) scale(1.15);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes monitorPulse {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ── View Transitions API (Circular Ripple Reveal) ────────────────────────── */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 99999;
+}
+
+/* Fallback smooth transition for browsers without View Transitions */
+.theme-transitioning,
+.theme-transitioning *,
+.theme-transitioning *::before,
+.theme-transitioning *::after {
+  transition:
+    background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    fill 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    stroke 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Mobile Placement */
+@media (max-width: 560px) {
+  .theme-switcher-wrapper {
+    top: max(12px, env(safe-area-inset-top));
+    right: max(12px, env(safe-area-inset-right));
+  }
+
+  .theme-switcher {
+    padding: 2.5px;
+    gap: 2px;
+  }
+
+  .theme-switcher-indicator {
+    top: 2.5px;
+    left: 2.5px;
+    width: 28px;
+    height: 28px;
+    transform: translateX(calc(var(--active-index, 0) * 30px));
+  }
+
+  .theme-switcher-btn {
+    width: 28px;
+    height: 28px;
+    touch-action: manipulation;
+  }
+}
+
+/* ── Segmented Switcher with Text Labels (Appearance Section) ─────────────── */
+.theme-switcher-wrapper.has-labels {
+  display: flex;
+  width: 100%;
+}
+
+.theme-switcher.has-labels {
+  display: flex;
+  width: 100%;
+  padding: 3px;
+  gap: 0;
+  border-radius: 5px;
+  background-color: var(--badge-bg);
+  border: 1px solid var(--border-color);
+}
+
+body.theme-dark .theme-switcher.has-labels,
+.theme-dark .theme-switcher.has-labels {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.theme-switcher.has-labels .theme-switcher-indicator {
+  top: 3px;
+  left: 3px;
+  width: calc((100% - 6px) / 3);
+  height: calc(100% - 6px);
+  border-radius: 5px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transform: translateX(calc(var(--active-index, 0) * 100%));
+}
+
+body.theme-dark .theme-switcher.has-labels .theme-switcher-indicator,
+.theme-dark .theme-switcher.has-labels .theme-switcher-indicator {
+  background-color: #262626;
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.theme-switcher.has-labels .theme-switcher-btn {
+  flex: 1;
+  width: auto;
+  min-width: 0;
+  height: 32px;
+  padding: 0 6px;
+  gap: 6px;
+  border-radius: 5px;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.theme-switcher.has-labels .theme-switcher-btn:hover {
+  opacity: 1;
+  color: var(--text-primary);
+}
+
+.theme-switcher.has-labels .theme-switcher-btn.active {
+  opacity: 1;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.theme-switcher.has-labels .theme-btn-label {
+  white-space: nowrap;
+  line-height: 1;
+  font-size: 0.75rem;
+}
+
+/* Mobile override: ensure labeled switcher stays responsive full-width */
+@media (max-width: 560px) {
+  .theme-switcher.has-labels {
+    padding: 3px;
+    gap: 0;
+  }
+
+  .theme-switcher.has-labels .theme-switcher-indicator {
+    top: 3px;
+    left: 3px;
+    width: calc((100% - 6px) / 3);
+    height: calc(100% - 6px);
+    transform: translateX(calc(var(--active-index, 0) * 100%));
+  }
+
+  .theme-switcher.has-labels .theme-switcher-btn {
+    width: auto;
+    height: 32px;
+  }
+}

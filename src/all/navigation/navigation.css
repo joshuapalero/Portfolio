@@ -1,0 +1,1790 @@
+/* ── Navigation Hub Styles (Desktop Right Sidebar & Mobile Right Navigation) ── */
+
+/* ── Adaptive Content Clearance: Adjust Left for 100% Open Sidebar ─────────── */
+@media (min-width: 1024px) {
+  .container,
+  body.has-sidebar-expanded .container {
+    transition:
+      margin-right 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+      margin-left 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+      max-width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    /* 100% open sidebar on desktop, laptop, and web view: permanently clear right space */
+    margin-right: calc(350px + clamp(10px, 1.25vw, 18px) + 20px);
+    margin-left: auto;
+    max-width: min(980px, calc(100vw - (350px + clamp(10px, 1.25vw, 18px) + 20px) - clamp(20px, 3vw, 40px)));
+  }
+}
+
+@media (min-width: 1750px) {
+  .container,
+  body.has-sidebar-expanded .container {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 980px;
+  }
+}
+
+/* ── 1. Desktop Right Sidebar (min-width: 1024px) ─────────────────────────── */
+.nav-right-sidebar {
+  display: none;
+  position: fixed;
+  right: clamp(10px, 1.25vw, 18px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 90;
+  pointer-events: auto;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 1024px) {
+  .nav-right-sidebar {
+    display: block;
+  }
+}
+
+/* ── Collapsed Dock Rail ───────────────────────────────────────────────────── */
+.nav-sidebar-dock {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 8px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* ── Ambient Vercel Dot Background Pattern for Dock Rail ── */
+.nav-sidebar-dock::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.08) 1.15px, transparent 1.15px);
+  background-size: 13px 13px;
+  background-position: center;
+  opacity: 0.65;
+  transition: opacity 0.25s ease;
+}
+
+body.theme-dark .nav-sidebar-dock::before,
+.theme-dark .nav-sidebar-dock::before {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.16) 1.15px, transparent 1.15px);
+  opacity: 0.85;
+}
+
+body.theme-dark .nav-sidebar-dock {
+  background-color: rgba(30, 30, 30, 0.88);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 14px 35px -8px rgba(0, 0, 0, 0.7);
+}
+
+.nav-dock-divider {
+  width: 24px;
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 2px 0;
+  opacity: 0.8;
+  position: relative;
+  z-index: 1;
+}
+
+.nav-dock-item {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-dock-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-dock-btn:hover {
+  background-color: var(--badge-bg);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+  transform: scale(1.05);
+}
+
+.nav-dock-btn:active {
+  transform: scale(0.96);
+}
+
+.nav-dock-expand-btn {
+  color: var(--text-muted);
+}
+
+.nav-dock-expand-btn:hover {
+  color: var(--text-primary);
+}
+
+/* Chat Button Ping Dot & Badge */
+.nav-dock-ping-wrap {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 6px;
+  height: 6px;
+}
+
+.nav-dock-ping {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-color: #ffffff;
+  animation: navPulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+body.theme-light .nav-dock-ping {
+  background-color: #000000;
+}
+
+.nav-dock-dot {
+  position: relative;
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #ffffff;
+}
+
+body.theme-light .nav-dock-dot {
+  background-color: #000000;
+}
+
+@keyframes navPulse {
+  75%, 100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.nav-dock-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -3px;
+  background-color: var(--text-primary);
+  color: var(--bg-page);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 2px 4px;
+  border-radius: 5px;
+  border: 1px solid var(--bg-card);
+}
+
+/* Dock Viewers Indicator */
+.nav-dock-viewers-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  width: 36px;
+  padding: 4px 0;
+  border-radius: 5px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  cursor: default;
+}
+
+.nav-dock-viewers-icon {
+  stroke-width: 1.8;
+}
+
+.nav-dock-viewers-count {
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Dock Like Button custom wrapper */
+.nav-dock-like-wrap .like-btn {
+  padding: 4px;
+  min-height: 36px;
+  width: 36px;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.nav-dock-like-wrap .like-btn .like-count {
+  display: none;
+}
+
+/* Tooltip Popup on Dock Items (Desktop Hover) */
+.nav-tooltip {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  background-color: var(--text-primary);
+  color: var(--bg-page);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  padding: 5px 9px;
+  border-radius: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+  z-index: 100;
+}
+
+.nav-dock-item:hover .nav-tooltip,
+.nav-dock-btn:hover .nav-tooltip,
+.nav-social-icon-btn:hover .nav-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* ── Expanded Card Panel Mode ──────────────────────────────────────────────── */
+.nav-sidebar-panel {
+  position: relative;
+  width: 350px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  box-shadow: var(--shadow-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  animation: navSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Signature Ambient Vercel Dot Background Pattern for Panel ── */
+.nav-sidebar-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  min-height: 100%;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.08) 1.15px, transparent 1.15px);
+  background-size: 15px 15px;
+  background-position: top left;
+  mask-image: radial-gradient(ellipse 95% 85% at 50% 20%, #000000 40%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 20%, #000000 40%, transparent 95%);
+  opacity: 0.75;
+  transition: opacity 0.25s ease;
+}
+
+body.theme-dark .nav-sidebar-panel::before,
+.theme-dark .nav-sidebar-panel::before {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.16) 1.15px, transparent 1.15px);
+  opacity: 0.85;
+}
+
+body.theme-dark .nav-sidebar-panel {
+  background-color: rgba(30, 30, 30, 0.92);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.75);
+}
+
+@keyframes navSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.nav-sidebar-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.nav-sidebar-title-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-sidebar-title {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.nav-sidebar-collapse-btn {
+  display: none !important;
+}
+
+.nav-sidebar-body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.nav-sidebar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav-sidebar-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-sidebar-section-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  color: var(--text-muted);
+}
+
+.nav-sidebar-count-pill {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background-color: var(--badge-bg);
+  padding: 1px 6px;
+  border-radius: 5px;
+}
+
+/* Engagement Card (Viewers + Like) */
+.nav-sidebar-engagement-card,
+.nav-mobile-engagement-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  background-color: var(--badge-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+}
+
+.nav-sidebar-live-row,
+.nav-mobile-viewers-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.nav-sidebar-live-row .live-viewers-widget,
+.nav-mobile-viewers-row .live-viewers-widget {
+  padding: 0;
+  align-items: flex-start;
+}
+
+.nav-sidebar-like-row,
+.nav-mobile-like-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border-color);
+}
+
+.nav-sidebar-like-btn,
+.nav-mobile-like-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 6px 12px;
+  min-height: 32px;
+  font-size: 0.8125rem;
+  border-radius: 5px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+}
+
+/* ── Work Together / Freelance CTA Section ─────────────────────────────────── */
+.nav-work-together {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.nav-work-together-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav-work-together-title {
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin: 0;
+  text-transform: lowercase;
+}
+
+.nav-work-together-desc {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  opacity: 0.88;
+  margin: 0;
+}
+
+/* ── Work Together Dedicated Page Button ── */
+.nav-work-together-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: 5px;
+  background-color: var(--text-primary);
+  color: var(--bg-page);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+  margin-top: 2px;
+}
+
+.nav-work-together-btn:hover {
+  opacity: 0.92;
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.nav-work-together-btn:active {
+  transform: translateY(0);
+}
+
+.nav-work-btn-arrow {
+  transition: transform 0.18s ease;
+}
+
+.nav-work-together-btn:hover .nav-work-btn-arrow {
+  transform: translateX(3px);
+}
+
+.nav-work-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.nav-work-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 5px;
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.04);
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.theme-light .nav-work-card {
+  background-color: rgba(0, 0, 0, 0.04);
+  border: none;
+  box-shadow: none;
+}
+
+.nav-work-card:hover {
+  transform: translateY(-1px);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+body.theme-light .nav-work-card:hover {
+  transform: translateY(-1px);
+  background-color: rgba(0, 0, 0, 0.07);
+}
+
+.nav-work-card:active {
+  transform: translateY(0);
+}
+
+.nav-work-card-action,
+.nav-work-card-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+  text-decoration: none;
+  color: inherit;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.nav-work-card-action-btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.nav-work-card-arrow-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  cursor: pointer;
+}
+
+.nav-work-card-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: none;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+body.theme-light .nav-work-card-icon-box {
+  background-color: rgba(0, 0, 0, 0.05);
+  border: none;
+  color: #000000;
+}
+
+.nav-work-card:hover .nav-work-card-icon-box {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+body.theme-light .nav-work-card:hover .nav-work-card-icon-box {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.nav-work-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.nav-work-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-work-card-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.2;
+}
+
+body.theme-light .nav-work-card-tag {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.nav-work-card-copied-pill {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  animation: navPillFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.theme-light .nav-work-card-copied-pill {
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+}
+
+.nav-work-card-subtext {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  opacity: 0.75;
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+}
+
+.nav-work-card-text {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+  text-transform: lowercase;
+}
+
+.nav-work-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: 5px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+body.theme-light .nav-work-copy-btn {
+  border: none;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #000000;
+}
+
+.nav-work-copy-btn:hover {
+  transform: none;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+body.theme-light .nav-work-copy-btn:hover {
+  transform: none;
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.nav-work-copy-btn.is-copied {
+  background-color: #ffffff;
+  border: none;
+  color: #000000;
+}
+
+body.theme-light .nav-work-copy-btn.is-copied {
+  background-color: #000000;
+  border: none;
+  color: #ffffff;
+}
+
+.nav-work-copy-btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.nav-work-card-chevron {
+  color: var(--text-secondary);
+  opacity: 0.45;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, opacity 0.2s ease, color 0.2s ease;
+}
+
+.nav-work-card:hover .nav-work-card-chevron {
+  transform: translateX(3px);
+  opacity: 0.75;
+}
+
+@keyframes navPillFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes navFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── 2. Social Links Styles ─────────────────────────────────────────────────── */
+.nav-social-compact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+
+.nav-social-icon-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 5px;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.nav-social-icon-btn:hover {
+  background-color: var(--badge-bg);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+  transform: scale(1.05);
+}
+
+.nav-social-icon-btn .social-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.nav-social-full {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.nav-social-item {
+  width: 100%;
+}
+
+.nav-social-card-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-social-card-link:hover {
+  background-color: var(--badge-bg);
+  border-color: var(--border-color);
+  transform: translateX(-2px);
+}
+
+.nav-social-card-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 5px;
+  background-color: var(--badge-bg);
+  border: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.nav-social-card-link:hover .nav-social-card-icon-wrap {
+  background-color: var(--bg-card);
+}
+
+.nav-social-card-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  min-width: 0;
+}
+
+.nav-social-card-label {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.nav-social-card-arrow {
+  color: var(--text-muted);
+  opacity: 0.6;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-social-card-link:hover .nav-social-card-arrow {
+  opacity: 1;
+  transform: translate(1px, -1px);
+}
+
+.nav-social-card-desc {
+  font-size: 0.6875rem;
+  color: var(--text-secondary);
+  opacity: 0.75;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── 3. Mobile Right Navigation (< 1024px) ─────────────────────────────────── */
+.nav-mobile-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(20px, env(safe-area-inset-bottom));
+  z-index: 95;
+  padding: 8px 14px;
+  border-radius: 5px;
+  background-color: var(--text-primary);
+  color: var(--bg-page);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 18px -2px rgba(0, 0, 0, 0.35);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.nav-mobile-trigger:active {
+  transform: scale(0.95);
+}
+
+@media (min-width: 1024px) {
+  .nav-mobile-trigger,
+  .nav-mobile-backdrop,
+  .nav-mobile-drawer {
+    display: none !important;
+  }
+}
+
+.nav-mobile-trigger-ping-wrap {
+  position: relative;
+  display: flex;
+  width: 6px;
+  height: 6px;
+}
+
+.nav-mobile-trigger-ping {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-color: #ffffff;
+  animation: navPulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+body.theme-light .nav-mobile-trigger-ping {
+  background-color: #000000;
+}
+
+.nav-mobile-trigger-dot {
+  position: relative;
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #ffffff;
+}
+
+body.theme-light .nav-mobile-trigger-dot {
+  background-color: #000000;
+}
+
+.nav-mobile-trigger-icon {
+  flex-shrink: 0;
+}
+
+.nav-mobile-trigger-label {
+  letter-spacing: 0.02em;
+}
+
+.nav-mobile-trigger-badge {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-size: 0.625rem;
+  padding: 1px 5px;
+  border-radius: 5px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+/* Mobile Slide-Over Backdrop */
+.nav-mobile-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.nav-mobile-backdrop.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Mobile Slide-Over Right Drawer */
+.nav-mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(350px, 86vw);
+  height: 100dvh;
+  background-color: var(--bg-card);
+  border-left: 1px solid var(--border-color);
+  box-shadow: -8px 0 28px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding-top: max(16px, env(safe-area-inset-top));
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+  padding-left: 18px;
+  padding-right: max(18px, env(safe-area-inset-right));
+  overflow: hidden;
+}
+
+/* ── Signature Ambient Vercel Dot Background Pattern for Mobile Drawer ── */
+.nav-mobile-drawer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.08) 1.15px, transparent 1.15px);
+  background-size: 15px 15px;
+  background-position: top left;
+  mask-image: radial-gradient(ellipse 95% 85% at 50% 20%, #000000 40%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 20%, #000000 40%, transparent 95%);
+  opacity: 0.75;
+  transition: opacity 0.25s ease;
+}
+
+body.theme-dark .nav-mobile-drawer::before,
+.theme-dark .nav-mobile-drawer::before {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.16) 1.15px, transparent 1.15px);
+  opacity: 0.85;
+}
+
+.nav-mobile-drawer.is-open {
+  transform: translateX(0);
+}
+
+.nav-mobile-drawer-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.nav-mobile-drawer-title-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-mobile-drawer-title {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.nav-mobile-drawer-close-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 5px;
+  background: var(--badge-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.nav-mobile-drawer-close-btn:active {
+  transform: scale(0.94);
+}
+
+.nav-mobile-drawer-content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.nav-mobile-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-mobile-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-mobile-section-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  color: var(--text-muted);
+}
+
+.nav-mobile-count-pill {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background-color: var(--badge-bg);
+  padding: 2px 7px;
+  border-radius: 5px;
+}
+
+.nav-mobile-theme-wrapper {
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* ── 4. Smart Email Modal (Universal Webmail & Mailto Dispatcher) ──────────── */
+.nav-email-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+body.theme-light .nav-email-modal-overlay {
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+.nav-email-modal-container {
+  width: 100%;
+  max-width: 460px;
+  background-color: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 5px;
+  box-shadow: 0 20px 48px -8px rgba(0, 0, 0, 0.9);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
+  color: #ffffff;
+}
+
+body.theme-light .nav-email-modal-container {
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 20px 48px -8px rgba(0, 0, 0, 0.15);
+  color: #000000;
+}
+
+.nav-email-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.nav-email-modal-title-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.nav-email-modal-icon-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 5px;
+  background-color: var(--badge-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.nav-email-modal-icon-badge svg {
+  color: currentColor !important;
+  stroke: currentColor !important;
+}
+
+body.theme-light .nav-email-modal-icon-badge {
+  background-color: var(--badge-bg);
+  color: #000000;
+  border: 1px solid var(--border-color);
+}
+
+body.theme-light .nav-email-modal-icon-badge svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+.nav-email-modal-title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.25;
+  text-transform: lowercase;
+}
+
+body.theme-light .nav-email-modal-title {
+  color: #000000;
+}
+
+.nav-email-modal-desc {
+  margin: 4px 0 0;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+}
+
+body.theme-light .nav-email-modal-desc {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.nav-email-modal-close-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: 5px;
+  background-color: var(--badge-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.18s ease;
+}
+
+.nav-email-modal-close-btn svg {
+  color: currentColor !important;
+  stroke: currentColor !important;
+}
+
+.nav-email-modal-close-btn:hover {
+  background-color: var(--badge-hover);
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+}
+
+body.theme-light .nav-email-modal-close-btn {
+  background-color: var(--badge-bg);
+  border: 1px solid var(--border-color);
+  color: #000000;
+}
+
+body.theme-light .nav-email-modal-close-btn svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+body.theme-light .nav-email-modal-close-btn:hover {
+  background-color: var(--badge-hover);
+  border-color: #000000;
+  color: #000000;
+}
+
+/* Address Box */
+button.nav-email-modal-address-box,
+.nav-email-modal-address-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 5px;
+  background-color: var(--badge-bg);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  color: inherit;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+button.nav-email-modal-address-box:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+}
+
+body.theme-light button.nav-email-modal-address-box,
+body.theme-light .nav-email-modal-address-box {
+  background-color: var(--badge-bg);
+  border: 1px solid var(--border-color);
+}
+
+.nav-email-modal-address-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.nav-email-modal-address-label {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+}
+
+body.theme-light .nav-email-modal-address-label {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.nav-email-modal-address-val {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: lowercase;
+}
+
+body.theme-light .nav-email-modal-address-val {
+  color: #000000;
+}
+
+.nav-email-modal-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid var(--border-color);
+  background-color: var(--badge-bg);
+  color: var(--text-primary);
+  cursor: pointer;
+  flex-shrink: 0;
+  text-transform: lowercase;
+  transition: all 0.18s ease;
+}
+
+.nav-email-modal-copy-btn svg {
+  color: currentColor !important;
+  stroke: currentColor !important;
+}
+
+.nav-email-modal-copy-btn:hover {
+  background-color: var(--badge-hover);
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+}
+
+body.theme-light .nav-email-modal-copy-btn {
+  background-color: var(--badge-bg);
+  border: 1px solid var(--border-color);
+  color: #000000;
+}
+
+body.theme-light .nav-email-modal-copy-btn svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+body.theme-light .nav-email-modal-copy-btn:hover {
+  background-color: var(--badge-hover);
+  border-color: #000000;
+  color: #000000;
+}
+
+.nav-email-modal-copy-btn.is-copied {
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  color: #000000;
+}
+
+.nav-email-modal-copy-btn.is-copied svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+body.theme-light .nav-email-modal-copy-btn.is-copied {
+  background-color: #000000;
+  border: 1px solid #000000;
+  color: #ffffff;
+}
+
+body.theme-light .nav-email-modal-copy-btn.is-copied svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* Modal Options */
+.nav-email-modal-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav-email-modal-option-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 5px;
+  background-color: var(--badge-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  text-decoration: none;
+  cursor: pointer;
+  width: 100%;
+  font: inherit;
+  text-align: left;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.theme-light .nav-email-modal-option-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  color: #000000;
+}
+
+.nav-email-modal-option-card:hover {
+  background-color: var(--badge-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-1px);
+}
+
+body.theme-light .nav-email-modal-option-card:hover {
+  background-color: var(--badge-bg);
+  border-color: #000000;
+  transform: translateY(-1px);
+}
+
+.nav-email-modal-option-card.is-triggered {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: #ffffff;
+}
+
+body.theme-light .nav-email-modal-option-card.is-triggered {
+  background-color: var(--badge-bg);
+  border-color: #000000;
+}
+
+.nav-email-modal-option-card.is-triggered .nav-email-option-icon-box {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #000000;
+}
+
+.nav-email-modal-option-card.is-triggered .nav-email-option-icon-box svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+body.theme-light .nav-email-modal-option-card.is-triggered .nav-email-option-icon-box {
+  background-color: #000000;
+  border-color: #000000;
+  color: #ffffff;
+}
+
+body.theme-light .nav-email-modal-option-card.is-triggered .nav-email-option-icon-box svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+.nav-email-option-badge {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 8px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+}
+
+.nav-email-option-badge.is-success {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+body.theme-light .nav-email-option-badge.is-success {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.nav-email-option-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 5px;
+  background-color: var(--badge-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.nav-email-option-icon-box svg {
+  color: currentColor !important;
+  stroke: currentColor !important;
+}
+
+body.theme-light .nav-email-option-icon-box {
+  background-color: var(--badge-bg);
+  color: #000000;
+  border: 1px solid var(--border-color);
+}
+
+body.theme-light .nav-email-option-icon-box svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+.nav-email-modal-option-card:hover .nav-email-option-icon-box {
+  transform: none;
+}
+
+body.theme-light .nav-email-modal-option-card:hover .nav-email-option-icon-box {
+  transform: none;
+}
+
+.nav-email-option-content {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.nav-email-option-name {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #ffffff;
+  text-transform: lowercase;
+}
+
+body.theme-light .nav-email-option-name {
+  color: #000000;
+}
+
+.nav-email-option-arrow {
+  color: #ffffff;
+  opacity: 1;
+  flex-shrink: 0;
+}
+
+.nav-email-option-arrow svg,
+svg.nav-email-option-arrow {
+  color: #ffffff;
+  stroke: #ffffff;
+}
+
+body.theme-light .nav-email-option-arrow {
+  color: #000000;
+}
+
+body.theme-light .nav-email-option-arrow svg,
+body.theme-light svg.nav-email-option-arrow {
+  color: #000000;
+  stroke: #000000;
+}
+
+.nav-email-modal-option-card:hover .nav-email-option-arrow {
+  transform: translate(2px, -2px);
+  opacity: 1;
+}
+
+/* Fallback Status Callout (Reassurance when default mail client is launched) */
+.nav-email-modal-status-callout {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  animation: navFadeIn 0.2s ease-out;
+}
+
+body.theme-light .nav-email-modal-status-callout {
+  background-color: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.nav-email-modal-status-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #ffffff;
+}
+
+body.theme-light .nav-email-modal-status-header {
+  color: #000000;
+}
+
+.nav-email-status-icon {
+  flex-shrink: 0;
+  color: #ffffff;
+  stroke: #ffffff;
+}
+
+body.theme-light .nav-email-status-icon {
+  color: #000000;
+  stroke: #000000;
+}
+
+.nav-email-status-title {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: lowercase;
+  letter-spacing: 0.01em;
+  color: #ffffff;
+}
+
+body.theme-light .nav-email-status-title {
+  color: #000000;
+}
+
+.nav-email-status-msg {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+body.theme-light .nav-email-status-msg {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.nav-email-status-msg strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+body.theme-light .nav-email-status-msg strong {
+  color: #000000;
+}
+
+/* Modal Footer & Template Draft Button */
+.nav-email-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 4px;
+}
+
+.nav-email-modal-draft-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: lowercase;
+}
+
+.nav-email-modal-draft-btn:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+}
+
+body.theme-light .nav-email-modal-draft-btn {
+  border: 1px dashed rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.7);
+}
+
+body.theme-light .nav-email-modal-draft-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.35);
+  color: #000000;
+}
+
+.nav-email-modal-draft-btn.is-copied {
+  border-style: solid;
+  border-color: #ffffff;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.nav-email-modal-draft-btn.is-copied svg {
+  color: #000000;
+  stroke: #000000;
+}
+
+body.theme-light .nav-email-modal-draft-btn.is-copied {
+  border-color: #000000;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+body.theme-light .nav-email-modal-draft-btn.is-copied svg {
+  color: #ffffff;
+  stroke: #ffffff;
+}
+
+.nav-work-card-clickable {
+  user-select: none;
+}
+
+/* ── Sidebar Resume Section (Pure Monochrome) ── */
+.nav-sidebar-resume-section,
+.nav-mobile-resume-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav-resume-card {
+  transition: background-color 0.18s ease, transform 0.18s ease;
+}
+
+.nav-resume-subtext {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.6875rem;
+  color: var(--text-muted, #888888);
+  letter-spacing: -0.01em;
+}
+
+/* ── Accessibility: Reduced Motion Overrides ─────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .nav-right-sidebar,
+  .nav-sidebar-panel,
+  .nav-mobile-drawer,
+  .nav-work-card,
+  .nav-work-card-link,
+  .nav-work-copy-btn,
+  .nav-work-card-chevron,
+  .nav-email-modal-option-card,
+  .nav-email-option-arrow,
+  .nav-email-modal-status-callout,
+  .nav-email-modal-draft-btn,
+  .nav-resume-card {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .nav-dock-ping,
+  .nav-mobile-trigger-ping {
+    animation: none !important;
+    display: none !important;
+  }
+}
+

@@ -1,0 +1,81 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1698 >>
+stream
+BT
+/F1 18 Tf
+50 740 Td
+(Joshua Pasacay Palero) Tj
+0 -22 Td
+/F1 12 Tf
+(Software Engineer & Full-Stack Web Developer) Tj
+0 -18 Td
+/F1 9 Tf
+(Manila, Philippines | Email: rblenon18@gmail.com | Phone: +63 912 345 6789 | GitHub: github.com/joshuapalero) Tj
+0 -30 Td
+/F1 13 Tf
+(PROFESSIONAL SUMMARY) Tj
+0 -16 Td
+/F1 9 Tf
+(Dedicated Software Engineer specializing in modern reactive architectures, zero-CLS performance optimization,) Tj
+0 -12 Td
+(and robust full-stack web applications using React 19, TypeScript, Laravel, WordPress, and Cloudflare Workers.) Tj
+0 -26 Td
+/F1 13 Tf
+(TECHNICAL COMPETENCIES) Tj
+0 -16 Td
+/F1 9 Tf
+(Frontend: TypeScript, JavaScript ES2024, React 19, TanStack Router, TanStack Query v5, HTML5/CSS3, Vite) Tj
+0 -14 Td
+(Backend: Node.js, PHP, Laravel, WordPress CMS, REST APIs, GraphQL, Cloudflare Workers & Serverless Functions) Tj
+0 -14 Td
+(Database & Tools: PostgreSQL, MySQL, SQLite, Git, GitHub Actions, Docker, Lightning CSS) Tj
+0 -26 Td
+/F1 13 Tf
+(EXPERIENCE & MILESTONES) Tj
+0 -16 Td
+/F1 10 Tf
+(Full-Stack Developer & Freelance Software Engineer) Tj
+0 -14 Td
+/F1 9 Tf
+(- Designed and shipped production portfolio architectures, client web solutions, and custom WordPress plugins.) Tj
+0 -12 Td
+(- Architected edge caching and Cloudflare proxy layers providing sub-100ms TTFB and resilience against rate limits.) Tj
+0 -12 Td
+(- Engineered zero-CLS skeleton hierarchies, fluid layouts, and accessible UI adhering to WCAG standards.) Tj
+0 -26 Td
+/F1 13 Tf
+(EDUCATION & CREDENTIALS) Tj
+0 -16 Td
+/F1 9 Tf
+(Bachelor of Science in Information Technology / Computer Science) Tj
+0 -14 Td
+(Continuous learner in Modern Web Engineering, Distributed Systems, and Edge Computing.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001991 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+2061
+%%EOF

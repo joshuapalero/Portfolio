@@ -1,0 +1,25 @@
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="48" fill="#121212" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="50" cy="50" r="44" fill="#1e1e1e"/>
+  <!-- Toshiro Hitsugaya - Boy 3 (Squad 10 Captain) -->
+  <path d="M20 96 C20 78 32 70 44 68 L56 68 C68 70 80 78 80 96 Z" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <path d="M40 68 L50 82 L60 68 Z" fill="#000000"/>
+  <path d="M45 68 L50 76 L55 68" fill="#ffffff"/>
+  <path d="M28 96 L62 68 L68 72 L34 96 Z" fill="#000000" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="50" cy="80" r="3" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <path d="M45 58 L45 70 L55 70 L55 58 Z" fill="#ffffff"/>
+  <path d="M35 44 C35 58 42 66 50 66 C58 66 65 58 65 44 C65 32 58 26 50 26 C42 26 35 32 35 44 Z" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <path d="M26 36 L18 26 L28 26 L26 14 L36 20 L40 8 L48 18 L54 6 L58 18 L68 10 L66 22 L76 18 L72 30 L82 30 L74 42 L68 34 C64 28 56 24 50 24 C44 24 36 28 32 34 Z" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <path d="M34 34 L38 46 L42 36 L48 48 L52 36 L58 46 L64 36" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <path d="M38 44 L46 47" stroke="#000000" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M62 44 L54 47" stroke="#000000" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="48" y1="45" x2="52" y2="45" stroke="#000000" stroke-width="1.5"/>
+  <path d="M38 47 L46 49 L44 53 L39 52 Z" fill="#000000"/>
+  <circle cx="43" cy="50" r="1.5" fill="#ffffff"/>
+  <circle cx="43.5" cy="50" r="0.6" fill="#000000"/>
+  <path d="M62 47 L54 49 L56 53 L61 52 Z" fill="#000000"/>
+  <circle cx="57" cy="50" r="1.5" fill="#ffffff"/>
+  <circle cx="56.5" cy="50" r="0.6" fill="#000000"/>
+  <path d="M49 54 L51 57 L49 57.5" stroke="#000000" stroke-width="1.5"/>
+  <line x1="46" y1="62" x2="54" y2="62" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+</svg>

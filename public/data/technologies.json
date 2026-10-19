@@ -1,0 +1,275 @@
+[
+  {
+    "name": "Next.js",
+    "category": "Frontend & User Interface",
+    "role": "Full-Stack React Framework",
+    "tag": "SSR · Server Components · App Router",
+    "url": "https://nextjs.org"
+  },
+  {
+    "name": "React",
+    "category": "Frontend & User Interface",
+    "role": "Component UI Architecture",
+    "tag": "Virtual DOM · Hooks · Concurrent Mode",
+    "url": "https://react.dev"
+  },
+  {
+    "name": "TypeScript",
+    "category": "Frontend & User Interface",
+    "role": "Static Typing & Interface Contracts",
+    "tag": "Strict Mode · Generics · Type Safety",
+    "url": "https://www.typescriptlang.org"
+  },
+  {
+    "name": "JavaScript",
+    "category": "Frontend & User Interface",
+    "role": "Core Web Platform Language",
+    "tag": "ESNext · Async/Await · Dynamic Web",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+  },
+  {
+    "name": "TanStack Start",
+    "category": "Frontend & User Interface",
+    "role": "Full-Stack React Framework",
+    "tag": "SSR · TanStack Router · Type-Safe",
+    "url": "https://tanstack.com/start"
+  },
+  {
+    "name": "Vite",
+    "category": "Frontend & User Interface",
+    "role": "Next-Gen Frontend Bundler",
+    "tag": "Rollup · Lightning HMR · ES Modules",
+    "url": "https://vite.dev"
+  },
+  {
+    "name": "Tailwind",
+    "category": "Frontend & User Interface",
+    "role": "Utility-First Styling System",
+    "tag": "Design Tokens · Responsive Breakpoints · OKLCH",
+    "url": "https://tailwindcss.com"
+  },
+  {
+    "name": "HTML",
+    "category": "Frontend & User Interface",
+    "role": "Semantic Document Structure",
+    "tag": "Semantic Tags · Accessibility (a11y) · SEO",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/HTML"
+  },
+  {
+    "name": "CSS",
+    "category": "Frontend & User Interface",
+    "role": "Responsive Styling & Animation",
+    "tag": "CSS Grid · Flexbox · Custom Variables",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/CSS"
+  },
+  {
+    "name": "Lucide React",
+    "category": "Frontend & User Interface",
+    "role": "Accessible Vector Icon Suite",
+    "tag": "SVG Icons · Tree-Shakeable · Crisp Vectors",
+    "url": "https://lucide.dev"
+  },
+  {
+    "name": "Node.js",
+    "category": "Backend, Runtimes & Distributed APIs",
+    "role": "Event-Driven Server Runtime",
+    "tag": "V8 Engine · Event Loop · Scalable I/O",
+    "url": "https://nodejs.org"
+  },
+  {
+    "name": "Bun",
+    "category": "Backend, Runtimes & Distributed APIs",
+    "role": "All-In-One JavaScript Runtime & Package Manager",
+    "tag": "JavaScriptCore · Ultra Fast · Native Bundler",
+    "url": "https://bun.sh"
+  },
+  {
+    "name": "Hono",
+    "category": "Backend, Runtimes & Distributed APIs",
+    "role": "Edge-First Ultrafast Web Framework",
+    "tag": "Zero-Dependency · Multi-Runtime · Cloudflare",
+    "url": "https://hono.dev"
+  },
+  {
+    "name": "Express",
+    "category": "Backend, Runtimes & Distributed APIs",
+    "role": "RESTful API Server Framework",
+    "tag": "Middleware Architecture · Routing · HTTP Services",
+    "url": "https://expressjs.com"
+  },
+  {
+    "name": "WebSocket",
+    "category": "Backend, Runtimes & Distributed APIs",
+    "role": "Full-Duplex Real-Time Communication",
+    "tag": "Low-Latency · Bidirectional · Event Streaming",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API"
+  },
+  {
+    "name": "REST",
+    "category": "Backend, Runtimes & Distributed APIs",
+    "role": "Representational State Transfer API Design",
+    "tag": "Stateless · HTTP Verbs · Clean Endpoints",
+    "url": "https://restfulapi.net"
+  },
+  {
+    "name": "GraphQL",
+    "category": "Backend, Runtimes & Distributed APIs",
+    "role": "Declarative Data Fetching & Query Schema",
+    "tag": "Type System · Resolvers · Zero Over-Fetching",
+    "url": "https://graphql.org"
+  },
+  {
+    "name": "tRPC",
+    "category": "Backend, Runtimes & Distributed APIs",
+    "role": "Type-Safe Remote Procedure Calls",
+    "tag": "TypeScript · RPC · Zero Overhead",
+    "url": "https://trpc.io"
+  },
+  {
+    "name": "gRPC",
+    "category": "Backend, Runtimes & Distributed APIs",
+    "role": "High-Performance RPC Communication",
+    "tag": "Protocol Buffers · HTTP/2 · Streaming Contracts",
+    "url": "https://grpc.io"
+  },
+  {
+    "name": "PostgreSQL",
+    "category": "Databases, ORM, Authentication & Payments",
+    "role": "Enterprise Relational SQL Database",
+    "tag": "ACID Transactions · JSONB · Indexes · Concurrency",
+    "url": "https://www.postgresql.org"
+  },
+  {
+    "name": "MySQL",
+    "category": "Databases, ORM, Authentication & Payments",
+    "role": "Production Relational Database Engine",
+    "tag": "InnoDB · Replication · High Availability",
+    "url": "https://www.mysql.com"
+  },
+  {
+    "name": "Prisma",
+    "category": "Databases, ORM, Authentication & Payments",
+    "role": "Type-Safe TypeScript Object-Relational Mapper",
+    "tag": "Schema Migrations · Auto-Generated Client · Type Safety",
+    "url": "https://www.prisma.io"
+  },
+  {
+    "name": "Clerk",
+    "category": "Databases, ORM, Authentication & Payments",
+    "role": "User Management & Session Authentication",
+    "tag": "JWT Tokens · Multi-Session · Social Logins",
+    "url": "https://clerk.com"
+  },
+  {
+    "name": "WorkOS",
+    "category": "Databases, ORM, Authentication & Payments",
+    "role": "Enterprise SSO & Directory Synchronization",
+    "tag": "SAML · SCIM · Enterprise Ready · Multi-Tenant",
+    "url": "https://workos.com"
+  },
+  {
+    "name": "Xendit",
+    "category": "Databases, ORM, Authentication & Payments",
+    "role": "Payment Gateway & Financial API Integration",
+    "tag": "Payment Gateway · Webhooks · E-Wallets · Cards",
+    "url": "https://www.xendit.co"
+  },
+  {
+    "name": "Docker",
+    "category": "DevOps, Cloud & Infrastructure",
+    "role": "Containerization & Image Packaging",
+    "tag": "Microservices · Multi-Stage Builds · Isolation",
+    "url": "https://www.docker.com"
+  },
+  {
+    "name": "Cloudflare",
+    "category": "DevOps, Cloud & Infrastructure",
+    "role": "Edge Computing & Serverless Workers",
+    "tag": "Edge Caching · DNS · DDoS Shield · Proxies",
+    "url": "https://www.cloudflare.com"
+  },
+  {
+    "name": "GitHub",
+    "category": "DevOps, Cloud & Infrastructure",
+    "role": "Code Repository & Team Collaboration",
+    "tag": "Pull Requests · Actions · Code Reviews",
+    "url": "https://github.com"
+  },
+  {
+    "name": "Git",
+    "category": "DevOps, Cloud & Infrastructure",
+    "role": "Distributed Version Control System",
+    "tag": "Branching Strategy · Merge Trees · Rebase",
+    "url": "https://git-scm.com"
+  },
+  {
+    "name": "CI/CD",
+    "category": "DevOps, Cloud & Infrastructure",
+    "role": "Automated Testing & Deployment Pipelines",
+    "tag": "Continuous Integration · Continuous Delivery",
+    "url": "https://github.com/features/actions"
+  },
+  {
+    "name": "Zed",
+    "category": "Developer Tooling & Workflow",
+    "role": "High-Performance Rust-Powered Code Editor",
+    "tag": "GPU-Accelerated · Ultra-Low Latency · Collaborative",
+    "url": "https://zed.dev"
+  },
+  {
+    "name": "ESLint",
+    "category": "Developer Tooling & Workflow",
+    "role": "Static Code Analysis & Linting",
+    "tag": "Rules Enforcement · AST Analysis · Best Practices",
+    "url": "https://eslint.org"
+  },
+  {
+    "name": "Prettier",
+    "category": "Developer Tooling & Workflow",
+    "role": "Opinionated Code Formatter",
+    "tag": "Consistent Formatting · Automated AST Pretty-Printing",
+    "url": "https://prettier.io"
+  },
+  {
+    "name": "Official Docs",
+    "category": "Primary Source",
+    "role": "Primary Technical Documentation & Specifications",
+    "tag": "Original Docs · API Specs · Standards · Reference",
+    "url": "https://developer.mozilla.org"
+  },
+  {
+    "name": "Stack Overflow",
+    "category": "Primary Source",
+    "role": "Collaborative Problem Solving & Debugging",
+    "tag": "Community · Q&A · Debugging · Solutions",
+    "url": "https://stackoverflow.com"
+  },
+  {
+    "name": "Internet",
+    "category": "Primary Source",
+    "role": "Technical Research & Web Knowledge Base",
+    "tag": "RFCs · Articles · Open Web · Research",
+    "url": "https://en.wikipedia.org/wiki/Internet"
+  },
+  {
+    "name": "Claude",
+    "category": "Artificial Intelligence Usage",
+    "role": "Anthropic Claude Reasoning & Coding Assistant",
+    "tag": "Sonnet 3.5 · Code Synthesis · Architectural Analysis",
+    "url": "https://claude.ai"
+  },
+  {
+    "name": "OpenAI",
+    "category": "Artificial Intelligence Usage",
+    "role": "Generative AI & LLM Embeddings API",
+    "tag": "GPT-4o · Embeddings · Agentic Pipelines",
+    "url": "https://openai.com"
+  },
+  {
+    "name": "Grok",
+    "category": "Artificial Intelligence Usage",
+    "role": "xAI Conversational & Reasoning Models",
+    "tag": "Real-Time Context · Advanced Reasoning",
+    "url": "https://x.ai"
+  }
+]

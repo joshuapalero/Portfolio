@@ -1,0 +1,295 @@
+/* ── Technology Stack / Infinite Scroll Animation Section ───────────────────── */
+.tech-stack-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* ── Section Header (matches 01 — blog and 02 — projects) ─────────────────── */
+.tech-stack-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 16px;
+}
+
+.tech-stack-title-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+}
+
+body.theme-dark .tech-stack-title-label,
+.theme-dark .tech-stack-title-label {
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+.tech-stack-title-label .tech-stack-word {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.tech-stack-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tech-toggle-icon-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  touch-action: manipulation;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+@media (pointer: coarse) {
+  .tech-toggle-icon-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+.tech-toggle-icon-btn:hover {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  transform: scale(1.15);
+}
+
+.tech-toggle-icon-btn.active {
+  background: transparent;
+  border: none;
+  color: var(--accent-color);
+}
+
+.tech-stack-history-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.825rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.tech-stack-history-link:hover {
+  color: var(--text-primary);
+}
+
+.tech-stack-history-link .history-arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.tech-stack-history-link:hover .history-arrow {
+  transform: translateX(3px);
+}
+
+
+/* ── Tag List Container ───────────────────────────────────────────────────── */
+.tech-tag-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 6px 0;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 1) 14%,
+    rgba(0, 0, 0, 1) 86%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 1) 14%,
+    rgba(0, 0, 0, 1) 86%,
+    transparent 100%
+  );
+}
+
+/* Fade Overlays (Fallback / Extra depth for edges) */
+.tech-fade-left,
+.tech-fade-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 90px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.tech-fade-left {
+  left: 0;
+  background: linear-gradient(90deg, var(--bg-page) 0%, transparent 100%);
+}
+
+.tech-fade-right {
+  right: 0;
+  background: linear-gradient(270deg, var(--bg-page) 0%, transparent 100%);
+}
+
+/* ── Loop Slider & Track ──────────────────────────────────────────────────── */
+.loop-slider {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  user-select: none;
+}
+
+.loop-slider .inner {
+  display: flex;
+  width: max-content;
+  animation-name: loop-animation;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: var(--direction, normal);
+  animation-duration: var(--duration, 60000ms);
+  will-change: transform;
+}
+
+.loop-slider:hover .inner {
+  animation-play-state: paused;
+}
+
+/* ── Tech Item (No container / borderless item) ────────────────────────────── */
+.tech-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 6px 14px;
+  margin-right: 22px;
+  white-space: nowrap;
+  box-shadow: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+  cursor: default;
+}
+
+.tech-tag:hover {
+  background: transparent;
+  color: var(--text-primary);
+  transform: translateY(-2px);
+  box-shadow: none;
+}
+
+.tech-tag-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  opacity: 0.88;
+  transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+.tech-tag-icon img,
+.tech-tag-icon svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+}
+
+body.theme-dark .tech-tag-icon,
+.theme-dark .tech-tag-icon {
+  filter: grayscale(100%) brightness(1.2);
+  -webkit-filter: grayscale(100%) brightness(1.2);
+}
+
+body.theme-light .tech-tag-icon {
+  filter: grayscale(100%) contrast(1.1);
+  -webkit-filter: grayscale(100%) contrast(1.1);
+}
+
+.tech-tag:hover .tech-tag-icon {
+  opacity: 1;
+  filter: grayscale(100%) brightness(1.3);
+  -webkit-filter: grayscale(100%) brightness(1.3);
+}
+
+body.theme-light .tech-tag:hover .tech-tag-icon {
+  filter: grayscale(100%) contrast(1.2);
+  -webkit-filter: grayscale(100%) contrast(1.2);
+}
+
+.tech-tag-name {
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: inherit;
+  letter-spacing: 0.01em;
+  transition: color 0.2s ease;
+}
+
+body.theme-light .tech-tag:hover {
+  color: var(--text-primary);
+}
+
+/* ── Hardware Accelerated Keyframe Loop ───────────────────────────────────── */
+@keyframes loop-animation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ── Responsive adjustments ──────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .tech-tag {
+    padding: 7px 14px;
+    font-size: 0.85rem;
+    margin-right: 10px;
+    gap: 6px;
+  }
+
+  .tech-tag-list {
+    gap: 10px;
+  }
+
+  .tech-fade-left,
+  .tech-fade-right {
+    width: 45px;
+  }
+}

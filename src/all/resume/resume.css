@@ -1,0 +1,407 @@
+/* ─── Resume Section ─────────────────────────────────────────────────────────
+   Scope: .resume-* (Strictly encapsulated, zero global leakage)
+   Design: Bryl Lim minimal pure monochrome aesthetic.
+   Color Palette: STRICTLY BLACK & WHITE (grayscale only). No colored accents.
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* ── Root ─────────────────────────────────────────────────────────────────── */
+.resume-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ── Back button (for dedicated /resume page) ─────────────────────────────── */
+.resume-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: none;
+  padding: 0.5rem 0;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary, #666666);
+  cursor: pointer;
+  transition: color 0.15s ease, transform 0.15s ease;
+  width: fit-content;
+}
+
+.resume-back-link:hover {
+  color: var(--text-primary, #000000);
+  transform: translateX(-2px);
+}
+
+body.theme-dark .resume-back-link:hover {
+  color: #ffffff;
+}
+
+/* ── Header (matches experience/certifications header pattern) ─────────────── */
+.resume-section-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0 0.25rem;
+  flex-wrap: wrap;
+}
+
+.resume-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.resume-title-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary, #737373);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-family: var(--font-mono, monospace);
+}
+
+.resume-title-label .resume-word {
+  color: var(--text-primary, #000000);
+}
+
+body.theme-dark .resume-title-label .resume-word {
+  color: #ffffff;
+}
+
+.resume-subtitle {
+  font-size: 0.8125rem;
+  color: var(--text-secondary, #737373);
+}
+
+.resume-details-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: transparent;
+  border: none;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary, #737373);
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s ease;
+  font-family: var(--font-mono, monospace);
+}
+
+.resume-details-link:hover {
+  color: var(--text-primary, #000000);
+}
+
+body.theme-dark .resume-details-link:hover {
+  color: #ffffff;
+}
+
+.resume-details-link:hover .resume-details-arrow {
+  transform: translateX(2px);
+}
+
+.resume-details-arrow {
+  transition: transform 0.15s ease;
+}
+
+/* ── File card (Pure Monochrome) ───────────────────────────────────────────── */
+.resume-file-card {
+  display: flex;
+  align-items: center;
+  gap: 1.125rem;
+  padding: 1.125rem 1.25rem;
+  border: 1px solid var(--border-color, #e5e5e5);
+  border-radius: 6px;
+  background: var(--bg-card, #ffffff);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.resume-file-card:hover {
+  border-color: var(--border-hover, #a3a3a3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* ── PDF Icon Box (Pure Black & White) ─────────────────────────────────────── */
+.resume-file-icon-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 56px;
+  border-radius: 5px;
+  background: var(--badge-bg, rgba(0, 0, 0, 0.05));
+  border: 1px solid var(--border-color, #e5e5e5);
+  color: var(--text-primary, #000000);
+  flex-shrink: 0;
+  padding-bottom: 6px;
+}
+
+.resume-file-svg {
+  opacity: 0.9;
+  color: currentColor;
+}
+
+.resume-file-badge {
+  position: absolute;
+  bottom: 4px;
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text-primary, #000000);
+  line-height: 1;
+  text-transform: uppercase;
+  font-family: var(--font-mono, monospace);
+}
+
+/* ── File Metadata ─────────────────────────────────────────────────────────── */
+.resume-file-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.resume-file-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary, #000000);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.01em;
+}
+
+.resume-file-details {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary, #737373);
+  font-family: var(--font-mono, monospace);
+}
+
+.resume-meta-dot {
+  font-size: 0.625rem;
+  opacity: 0.5;
+}
+
+/* ── Action Buttons (Pure Monochrome) ──────────────────────────────────────── */
+.resume-file-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  flex-shrink: 0;
+}
+
+.resume-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.9375rem;
+  border-radius: 5px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.18s ease;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: var(--font-sans, inherit);
+}
+
+/* Light mode primary: pure solid black */
+.resume-action-btn--primary {
+  background: #000000;
+  color: #ffffff;
+  border: 1px solid #000000;
+}
+
+.resume-action-btn--primary:hover {
+  background: #262626;
+  border-color: #262626;
+  transform: translateY(-1px);
+}
+
+.resume-action-btn--primary:active {
+  transform: translateY(0);
+}
+
+/* Light mode ghost: subtle border, black text */
+.resume-action-btn--ghost {
+  background: transparent;
+  color: #000000;
+  border: 1px solid var(--border-color, #d4d4d4);
+}
+
+.resume-action-btn--ghost:hover {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: #737373;
+  color: #000000;
+  transform: translateY(-1px);
+}
+
+.resume-action-btn--ghost:active {
+  transform: translateY(0);
+}
+
+/* ── Skeleton Placeholder ─────────────────────────────────────────────────── */
+.resume-skeleton-wrap {
+  width: 100%;
+  padding-top: 1rem;
+}
+
+.resume-skeleton-card {
+  display: flex;
+  align-items: center;
+  gap: 1.125rem;
+  padding: 1.125rem 1.25rem;
+  border: 1px solid var(--border-color, #e5e5e5);
+  border-radius: 6px;
+  background: var(--bg-card, #ffffff);
+}
+
+.resume-skeleton-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  flex: 1;
+}
+
+.resume-skeleton-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* ── Dark Mode (Pure Black & White, Translucent Inset) ─────────────────────── */
+body.theme-dark .resume-file-card,
+.theme-dark .resume-file-card {
+  background: #111111;
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+body.theme-dark .resume-file-card:hover,
+.theme-dark .resume-file-card:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+body.theme-dark .resume-file-icon-box,
+.theme-dark .resume-file-icon-box {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+body.theme-dark .resume-file-badge,
+.theme-dark .resume-file-badge {
+  color: #ffffff;
+}
+
+body.theme-dark .resume-file-name,
+.theme-dark .resume-file-name {
+  color: #ffffff;
+}
+
+body.theme-dark .resume-file-details,
+.theme-dark .resume-file-details {
+  color: #a3a3a3;
+}
+
+/* Dark mode primary: pure solid white with black text */
+body.theme-dark .resume-action-btn--primary,
+.theme-dark .resume-action-btn--primary {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+body.theme-dark .resume-action-btn--primary:hover,
+.theme-dark .resume-action-btn--primary:hover {
+  background: #e5e5e5;
+  border-color: #e5e5e5;
+}
+
+/* Dark mode ghost: subtle white border */
+body.theme-dark .resume-action-btn--ghost,
+.theme-dark .resume-action-btn--ghost {
+  background: transparent;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+body.theme-dark .resume-action-btn--ghost:hover,
+.theme-dark .resume-action-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+}
+
+body.theme-dark .resume-skeleton-card,
+.theme-dark .resume-skeleton-card {
+  background: #111111;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* ── Fallback Media Query for Systems without explicit theme class ─────────── */
+@media (prefers-color-scheme: dark) {
+  body:not(.theme-light) .resume-file-card {
+    background: #111111;
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  body:not(.theme-light) .resume-file-icon-box {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+  }
+
+  body:not(.theme-light) .resume-file-badge {
+    color: #ffffff;
+  }
+
+  body:not(.theme-light) .resume-file-name {
+    color: #ffffff;
+  }
+
+  body:not(.theme-light) .resume-action-btn--primary {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+  }
+
+  body:not(.theme-light) .resume-action-btn--ghost {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* ── Mobile Responsiveness ─────────────────────────────────────────────────── */
+@media (max-width: 580px) {
+  .resume-file-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.875rem;
+    padding: 1rem;
+  }
+
+  .resume-file-meta {
+    width: 100%;
+  }
+
+  .resume-file-actions {
+    width: 100%;
+  }
+
+  .resume-action-btn {
+    flex: 1;
+    justify-content: center;
+  }
+}

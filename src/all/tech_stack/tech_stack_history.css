@@ -1,0 +1,387 @@
+/* ── Dedicated Technology Stack Page View (Rail View Only) ────── */
+.tech-history-container {
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Back button matching AllPosts and ExperienceHistory */
+.tech-history-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+  margin-bottom: 24px;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.tech-history-back-btn:hover {
+  color: var(--text-primary);
+  transform: translateX(-3px);
+}
+
+/* Header matching/ Experience */
+.tech-history-header {
+  margin-bottom: 40px;
+}
+
+.tech-history-title {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0 0 14px 0;
+}
+
+.tech-history-h1 h1 {
+  font-family: var(--font-mono);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin: 0;
+  text-transform: lowercase;
+}
+
+.tech-history-subtitle {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 660px;
+  margin: 0;
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════
+   DUAL VERTICAL RAIL TIMELINE (Matches ExperienceHistory)
+   ═════════════════════════════════════════════════════════════════════════════ */
+.tech-history-timeline {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.tech-rail-item {
+  display: flex;
+  gap: 20px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 540px) {
+  .tech-rail-item {
+    gap: 12px;
+  }
+
+  .tech-logo-rail {
+    width: 36px;
+  }
+
+  .tech-logo-box {
+    width: 36px;
+    height: 36px;
+    border-radius: 5px;
+    font-size: 11px;
+  }
+
+  .tech-inner-rail {
+    margin-top: 12px;
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .tech-inner-dot {
+    display: none;
+  }
+
+  .tech-rail-content {
+    padding-bottom: 32px;
+  }
+}
+
+/* Left Logo Rail */
+.tech-logo-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 48px;
+  flex-shrink: 0;
+}
+
+.tech-logo-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+  letter-spacing: 0.05em;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.tech-rail-item:hover .tech-logo-box {
+  border-color: var(--accent-color);
+  transform: scale(1.04);
+}
+
+.tech-rail-line {
+  width: 1px;
+  flex: 1;
+  background-color: var(--border-color);
+  margin-top: 8px;
+  margin-bottom: 6px;
+}
+
+/* Right Content Column */
+.tech-rail-content {
+  flex: 1;
+  padding-bottom: 48px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tech-category-header {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.tech-category-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.35;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tech-category-type {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #9ca3af;
+  margin: 0;
+  line-height: 1.4;
+}
+
+body.theme-dark .tech-category-type,
+.theme-dark .tech-category-type {
+  color: #888888;
+}
+
+/* ── The SECOND Vertical Line (Inside Rail) ───────────────────────── */
+.tech-inner-rail {
+  position: relative;
+  margin-top: 18px;
+  padding-left: 24px;
+  border-left: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+body.theme-dark .tech-inner-rail,
+.theme-dark .tech-inner-rail {
+  border-left-color: var(--border-color);
+}
+
+/* Role / Group Entry Block */
+.tech-role-block {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Small circular connector dot centered on the second inside vertical line */
+.tech-inner-dot {
+  position: absolute;
+  left: -28.5px;
+  top: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid #d1d5db;
+  background-color: var(--bg-page);
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+body.theme-dark .tech-inner-dot,
+.theme-dark .tech-inner-dot {
+  border-color: #555555;
+  background-color: var(--bg-page);
+}
+
+.tech-rail-item:hover .tech-inner-dot {
+  border-color: var(--text-primary);
+  background-color: var(--text-primary);
+}
+
+.tech-role-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.tech-duration-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  color: #9ca3af;
+  margin: 0 0 6px 0;
+}
+
+body.theme-dark .tech-duration-meta,
+.theme-dark .tech-duration-meta {
+  color: #888888;
+}
+
+/* Paragraphs */
+.tech-paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.tech-paragraphs p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Skill Pills in Experience Style */
+.tech-skills-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.tech-skill-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.18s ease;
+}
+
+.tech-skill-pill:hover {
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.12);
+}
+
+.tech-pill-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.tech-pill-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Infinite Marquee */
+.tech-skills-marquee-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+.tech-skills-marquee-track {
+  display: flex;
+  gap: 40px;
+  width: max-content;
+  animation: marquee 45s linear infinite;
+}
+
+.tech-skills-marquee-container:hover .tech-skills-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.tech-skills-marquee-container-vertical {
+  overflow: hidden;
+  position: relative;
+  height: 350px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
+  mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
+}
+
+.tech-skills-marquee-track-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  height: max-content;
+  animation: marquee-vertical 25s linear infinite;
+}
+
+.tech-skills-marquee-container-vertical:hover .tech-skills-marquee-track-vertical {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-vertical {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+.tech-skills-marquee-track.reverse,
+.tech-skills-marquee-track-vertical.reverse {
+  animation-direction: reverse;
+}

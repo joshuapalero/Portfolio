@@ -1,0 +1,26 @@
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="48" fill="#121212" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="50" cy="50" r="44" fill="#1e1e1e"/>
+  <!-- Ichigo Kurosaki - Boy 1 (Substitute Shinigami) -->
+  <path d="M20 96 C20 78 32 70 44 68 L56 68 C68 70 80 78 80 96 Z" fill="#000000" stroke="#ffffff" stroke-width="1.5"/>
+  <path d="M42 68 L50 82 L58 68" fill="#ffffff"/>
+  <path d="M45 68 L50 78 L55 68" fill="#000000"/>
+  <path d="M30 96 L65 68 L71 72 L36 96 Z" fill="#ffffff" stroke="#000000" stroke-width="1"/>
+  <path d="M44 58 L44 70 L56 70 L56 58 Z" fill="#ffffff"/>
+  <line x1="48" y1="62" x2="48" y2="69" stroke="#000000" stroke-width="1"/>
+  <path d="M34 42 C34 58 42 67 50 67 C58 67 66 58 66 42 C66 30 58 24 50 24 C42 24 34 30 34 42 Z" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <path d="M26 38 L22 28 L30 30 L28 18 L38 24 L42 12 L48 20 L56 10 L58 22 L68 14 L66 26 L76 22 L72 32 L80 34 L72 44 L68 36 C64 30 56 26 50 26 C42 26 34 30 30 36 Z" fill="#000000"/>
+  <path d="M32 36 L38 44 L40 36 L46 45 L48 35 L54 44 L56 36 L62 44 L64 36" fill="#000000"/>
+  <path d="M36 43 L46 46" stroke="#000000" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M64 43 L54 46" stroke="#000000" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="48" y1="44" x2="52" y2="44" stroke="#000000" stroke-width="1.5"/>
+  <path d="M37 47 L45 49 L44 52 L38 51 Z" fill="#000000"/>
+  <circle cx="42" cy="49.5" r="1.5" fill="#ffffff"/>
+  <circle cx="43" cy="49.5" r="0.7" fill="#000000"/>
+  <path d="M63 47 L55 49 L56 52 L62 51 Z" fill="#000000"/>
+  <circle cx="58" cy="49.5" r="1.5" fill="#ffffff"/>
+  <circle cx="57" cy="49.5" r="0.7" fill="#000000"/>
+  <path d="M49 53 L51 57 L48 58" stroke="#000000" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M44 62 Q49 63 56 60" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+  <line x1="48" y1="65" x2="52" y2="65" stroke="#000000" stroke-width="1"/>
+</svg>

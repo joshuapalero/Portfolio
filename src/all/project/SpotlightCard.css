@@ -1,0 +1,385 @@
+/* ── Uiverse.io Card Fan-out by Javierrocadev (Monochrome Black & White) ── */
+.card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 360px;
+  height: 220px;
+  overflow: visible;
+  box-sizing: border-box;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 10px auto;
+}
+
+/* Hover elevation above surrounding elements */
+.card:hover {
+  z-index: 50;
+}
+
+/* Stable hit area prevents edge jitter when cards fan out */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card:hover::before {
+  inset: -40px;
+  pointer-events: auto;
+}
+
+/* ── 5 Consecutive Project Layers (Black and White Monochrome) ── */
+.card .pentagon1,
+.card .pentagon2,
+.card .pentagon3,
+.card .pentagon4,
+.card .pentagon5 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border-radius: 5px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 14px 16px;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.7);
+  pointer-events: auto;
+  overflow: hidden;
+}
+
+/* Layer 1 (deepest black layer) */
+.card .pentagon1 {
+  width: 360px;
+  height: 220px;
+  background: #000000;
+  border-color: rgba(255, 255, 255, 0.15);
+  z-index: 1;
+  transition: all .3s ease-in-out;
+}
+
+/* Layer 2 (onyx black) */
+.card .pentagon2 {
+  width: 350px;
+  height: 215px;
+  background: #0c0c0c;
+  border-color: rgba(255, 255, 255, 0.25);
+  z-index: 2;
+  transition: all .4s ease-in-out;
+}
+
+/* Layer 3 (graphite black) */
+.card .pentagon3 {
+  width: 340px;
+  height: 210px;
+  background: #171717;
+  border-color: rgba(255, 255, 255, 0.35);
+  z-index: 3;
+  transition: all .5s ease-in-out;
+}
+
+/* Layer 4 (charcoal black) */
+.card .pentagon4 {
+  width: 335px;
+  height: 205px;
+  background: #222222;
+  border-color: rgba(255, 255, 255, 0.5);
+  z-index: 4;
+  transition: all .6s ease-in-out;
+}
+
+/* Layer 5 (top front layer) */
+.card .pentagon5,
+.card .pentagon5.card-front-content {
+  width: 330px;
+  height: 200px;
+  z-index: 5;
+  border-radius: 5px;
+  box-sizing: border-box;
+  box-shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.5);
+  transition: all .7s ease-in-out;
+}
+
+/* Dark theme styling for front layer 5 */
+.theme-dark .card .pentagon5,
+body.theme-dark .card .pentagon5 {
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.theme-dark .card .pentagon5 .deck-app-title,
+body.theme-dark .card .pentagon5 .deck-app-title {
+  color: #ffffff !important;
+}
+
+.theme-dark .card .pentagon5 .deck-desc,
+body.theme-dark .card .pentagon5 .deck-desc {
+  color: #d1d5db !important;
+}
+
+/* Light theme styling for front layer 5 */
+body.theme-light .card .pentagon5,
+:root .card .pentagon5 {
+  background: #ffffff;
+  border: 1px solid #000000;
+  box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.15);
+}
+
+body.theme-light .card .pentagon5 .deck-app-title,
+:root .card .pentagon5 .deck-app-title {
+  color: #000000 !important;
+}
+
+body.theme-light .card .pentagon5 .deck-desc,
+:root .card .pentagon5 .deck-desc {
+  color: #374151 !important;
+}
+
+/* ── Fading Vercel Dot Background (Bottom Section of Project Cards) ── */
+.card .pentagon1::after,
+.card .pentagon2::after,
+.card .pentagon3::after,
+.card .pentagon4::after,
+.card .pentagon5::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55%;
+  pointer-events: none;
+  z-index: 1;
+  background-size: 15px 15px;
+  background-position: bottom right;
+  -webkit-mask-image: radial-gradient(ellipse 80% 85% at 100% 100%, black 15%, transparent 80%);
+  mask-image: radial-gradient(ellipse 80% 85% at 100% 100%, black 15%, transparent 80%);
+  opacity: 0.75;
+  transition: opacity 0.25s ease;
+}
+
+/* Layers 1-4 are always dark monochrome background: crisp white dots */
+.card .pentagon1::after,
+.card .pentagon2::after,
+.card .pentagon3::after,
+.card .pentagon4::after {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.18) 1.15px, transparent 1.15px);
+  opacity: 0.85;
+}
+
+/* Layer 5 (Front Card): Light mode: subtle black dots */
+body.theme-light .card .pentagon5::after,
+:root .card .pentagon5::after {
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.075) 1.15px, transparent 1.15px);
+  opacity: 0.75;
+}
+
+/* Layer 5 (Front Card): Dark mode: crisp white dots */
+body.theme-dark .card .pentagon5::after,
+.theme-dark .card .pentagon5::after {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.18) 1.15px, transparent 1.15px);
+  opacity: 0.85;
+}
+
+/* Hover opacity transitions */
+.card:hover .pentagon1::after,
+.card:hover .pentagon2::after,
+.card:hover .pentagon3::after,
+.card:hover .pentagon4::after,
+.card:hover .pentagon5::after {
+  opacity: 1;
+}
+
+/* High contrast black & white typography and badges for Layers 1-4 */
+.card .pentagon1 .deck-app-title,
+.card .pentagon2 .deck-app-title,
+.card .pentagon3 .deck-app-title,
+.card .pentagon4 .deck-app-title {
+  color: #ffffff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.card .pentagon1 .deck-desc,
+.card .pentagon2 .deck-desc,
+.card .pentagon3 .deck-desc,
+.card .pentagon4 .deck-desc {
+  color: #d1d5db !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.card .pentagon1 .deck-badge-secondary,
+.card .pentagon2 .deck-badge-secondary,
+.card .pentagon3 .deck-badge-secondary,
+.card .pentagon4 .deck-badge-secondary {
+  background: rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #ffffff !important;
+}
+
+.card .pentagon1 .deck-badge-highlight,
+.card .pentagon2 .deck-badge-highlight,
+.card .pentagon3 .deck-badge-highlight,
+.card .pentagon4 .deck-badge-highlight {
+  background: #ffffff;
+  color: #000000 !important;
+  font-weight: 700;
+}
+
+/* ── Hover Animations from Uiverse.io by Javierrocadev (Black & White Palette) ── */
+.card:hover .pentagon1 {
+  transform: scale(1.03) rotate(45deg);
+}
+
+.card:hover .pentagon2 {
+  transform: scale(1.03) rotate(90deg) translate(-14px, 14px);
+}
+
+.card:hover .pentagon3 {
+  transform: scale(1.03) rotate(135deg) translate(-28px, 28px);
+}
+
+.card:hover .pentagon4 {
+  transform: scale(1.03) rotate(190deg) translate(-42px, 42px);
+}
+
+.card:hover .pentagon5 {
+  transform: scale(1.03) rotate(235deg) translate(-56px, 56px);
+  border-color: #ffffff;
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.95), 0 0 16px rgba(255, 255, 255, 0.3);
+}
+
+@keyframes projectCardIn {
+  from {
+    opacity: 0.75;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.card.active-card {
+  animation: projectCardIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: min(285px, calc(100vw - 44px));
+    height: 185px;
+    margin: 8px auto;
+  }
+  .card .pentagon1 {
+    width: min(295px, calc(100vw - 36px));
+    height: 190px;
+  }
+  .card .pentagon2 {
+    width: min(290px, calc(100vw - 38px));
+    height: 188px;
+  }
+  .card .pentagon3 {
+    width: min(286px, calc(100vw - 40px));
+    height: 186px;
+  }
+  .card .pentagon4 {
+    width: min(282px, calc(100vw - 42px));
+    height: 184px;
+  }
+  .card .pentagon5,
+  .card .pentagon5.card-front-content {
+    width: min(280px, calc(100vw - 44px));
+    height: 180px;
+    padding: 12px 14px;
+  }
+  .card:hover .pentagon1,
+  .card:active .pentagon1 {
+    transform: scale(0.95) rotate(45deg);
+  }
+  .card:hover .pentagon2,
+  .card:active .pentagon2 {
+    transform: scale(0.95) rotate(90deg) translate(-7px, 7px);
+  }
+  .card:hover .pentagon3,
+  .card:active .pentagon3 {
+    transform: scale(0.95) rotate(135deg) translate(-14px, 14px);
+  }
+  .card:hover .pentagon4,
+  .card:active .pentagon4 {
+    transform: scale(0.95) rotate(190deg) translate(-21px, 21px);
+  }
+  .card:hover .pentagon5,
+  .card:active .pentagon5 {
+    transform: scale(0.95) rotate(235deg) translate(-28px, 28px);
+    box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.9);
+  }
+}
+
+@media (max-width: 360px) {
+  .card {
+    width: calc(100vw - 48px);
+    height: 175px;
+  }
+  .card .pentagon1 {
+    width: calc(100vw - 40px);
+    height: 180px;
+  }
+  .card .pentagon2 {
+    width: calc(100vw - 42px);
+    height: 178px;
+  }
+  .card .pentagon3 {
+    width: calc(100vw - 44px);
+    height: 176px;
+  }
+  .card .pentagon4 {
+    width: calc(100vw - 46px);
+    height: 174px;
+  }
+  .card .pentagon5,
+  .card .pentagon5.card-front-content {
+    width: calc(100vw - 48px);
+    height: 170px;
+    padding: 10px 12px;
+  }
+  .card:hover .pentagon1,
+  .card:active .pentagon1 {
+    transform: scale(0.91) rotate(45deg);
+  }
+  .card:hover .pentagon2,
+  .card:active .pentagon2 {
+    transform: scale(0.91) rotate(90deg) translate(-5px, 5px);
+  }
+  .card:hover .pentagon3,
+  .card:active .pentagon3 {
+    transform: scale(0.91) rotate(135deg) translate(-10px, 10px);
+  }
+  .card:hover .pentagon4,
+  .card:active .pentagon4 {
+    transform: scale(0.91) rotate(190deg) translate(-15px, 15px);
+  }
+  .card:hover .pentagon5,
+  .card:active .pentagon5 {
+    transform: scale(0.91) rotate(235deg) translate(-20px, 20px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card .pentagon1::after,
+  .card .pentagon2::after,
+  .card .pentagon3::after,
+  .card .pentagon4::after,
+  .card .pentagon5::after {
+    transition: none;
+  }
+}
+

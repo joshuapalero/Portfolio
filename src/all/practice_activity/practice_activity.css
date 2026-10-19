@@ -1,0 +1,658 @@
+/* ==============================================================================
+   Practice Activity & Github Activity Stylesheet
+   Strict 100% Monochrome (Black & White) Design System
+   Matches Portfolio Tokens, Aurora Scharff Zero-CLS & Recommendations Masonry
+   ============================================================================== */
+
+/* ── Container Layout ─────────────────────────────────────────────── */
+.practice-page-container {
+  width: 100%;
+  max-width: 940px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 0 0.5rem 4rem;
+  animation: practice-fade-in 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes practice-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Back Navigation Button ──────────────────────────────────────── */
+.practice-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+  margin-bottom: 24px;
+  text-decoration: none;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.practice-back-btn:hover {
+  color: var(--text-primary);
+  transform: translateX(-3px);
+}
+
+/* ── Archive Header ──────────────────────────────────────────────── */
+.practice-header {
+  margin-bottom: 32px;
+}
+
+.practice-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.practice-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.practice-title {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin: 0;
+  text-transform: lowercase;
+}
+
+body.theme-dark .practice-title,
+.theme-dark .practice-title {
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
+
+.practice-source-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  padding: 3px 10px;
+  border-radius: 5px;
+  background: var(--badge-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.practice-source-pill:hover {
+  background: var(--badge-hover);
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+}
+
+.practice-subtitle {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 720px;
+  margin: 0;
+}
+
+/* ── 1-2-3 Left-to-Right Masonry Layout ──────────────────────────── */
+.practice-masonry {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 860px) {
+  .practice-masonry {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 560px) {
+  .practice-masonry {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+.practice-col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (max-width: 860px) {
+  .practice-col {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 560px) {
+  .practice-col {
+    gap: 16px;
+    width: 100%;
+  }
+}
+
+/* ── Practice Activity Card (100% Monochrome Aesthetic) ──────────── */
+.practice-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  padding: 22px;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s ease,
+              box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.practice-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.practice-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.practice-card-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  background: var(--badge-bg);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  flex-shrink: 0;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.practice-card:hover .practice-card-icon-box {
+  border-color: var(--border-hover);
+  transform: scale(1.04);
+}
+
+.practice-card-date {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+  margin-top: 4px;
+}
+
+.practice-card-badges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.practice-badge {
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 5px;
+  background: var(--badge-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+
+.practice-badge-difficulty {
+  font-weight: 600;
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+}
+
+.practice-badge-count {
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+}
+
+.practice-card-title {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--text-primary);
+  margin: 0 0 8px;
+  transition: color 0.15s ease;
+}
+
+.practice-card:hover .practice-card-title {
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.practice-card-excerpt {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 0 0 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Card Footer */
+.practice-card-footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-color);
+}
+
+.practice-card-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: transform 0.15s ease;
+  white-space: nowrap;
+}
+
+.practice-card:hover .practice-card-action {
+  transform: translateX(3px);
+}
+
+/* ── Zero-CLS Skeleton Styles ────────────────────────────────────── */
+.practice-skeleton-card {
+  pointer-events: none;
+  cursor: default;
+  user-select: none;
+}
+
+.practice-skeleton-card:hover {
+  transform: none;
+  border-color: var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── Detail Page Styles (Monochrome) ─────────────────────────────── */
+.practice-detail-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  animation: practice-fade-in 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.practice-detail-header {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.practice-detail-badges-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.practice-detail-title {
+  font-family: var(--font-mono);
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin: 0 0 10px;
+  line-height: 1.25;
+}
+
+body.theme-dark .practice-detail-title,
+.theme-dark .practice-detail-title {
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
+
+.practice-detail-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0 0 20px;
+}
+
+.practice-detail-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.practice-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  text-decoration: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  transition: all 0.15s ease;
+}
+
+.practice-link-btn:hover {
+  background: var(--badge-bg);
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+}
+
+/* Detail Filter Bar */
+.practice-detail-filter-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  margin-bottom: 28px;
+  scrollbar-width: thin;
+}
+
+/* ── Section Block in Detail View ────────────────────────────────── */
+.practice-section-block {
+  margin-bottom: 40px;
+}
+
+.practice-section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.practice-section-num {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.practice-section-title {
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.practice-section-desc {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0 0 16px;
+}
+
+/* Best Practices Callout Box (Monochrome High-Contrast Border) */
+.practice-best-practices-box {
+  background: var(--badge-bg);
+  border: 1px solid var(--border-color);
+  border-left: 3px solid var(--text-primary);
+  border-radius: 5px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+}
+
+.practice-best-practices-heading {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.practice-best-practices-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+.practice-best-practices-list li {
+  margin-bottom: 4px;
+}
+
+/* ── Command Examples List ───────────────────────────────────────── */
+.practice-examples-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.practice-example-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.practice-example-item:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.practice-example-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.practice-example-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.practice-example-title {
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.practice-example-best-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 5px;
+  background: var(--badge-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.practice-example-when {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 0 0 10px;
+}
+
+.practice-example-desc {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 0 0 12px;
+}
+
+/* ── Interactive Terminal Command Box (Monochrome) ───────────────── */
+.practice-terminal-box {
+  position: relative;
+  background: #0f0f10;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+
+body.theme-light .practice-terminal-box,
+:root:not(.theme-dark) .practice-terminal-box {
+  background: #18181b;
+}
+
+.practice-terminal-code {
+  color: #f4f4f5;
+  white-space: pre;
+  display: block;
+  padding-right: 58px; /* space for copy button */
+}
+
+.practice-copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.practice-copy-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+}
+
+.practice-copy-btn.copied {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #000000;
+}
+
+/* Flags Explained Table */
+.practice-flags-wrap {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.practice-flag-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 0.8rem;
+}
+
+.practice-flag-code {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--text-primary);
+  background: var(--badge-bg);
+  border: 1px solid var(--border-color);
+  padding: 1px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.practice-flag-text {
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Output Example Box */
+.practice-output-box {
+  background: var(--badge-bg);
+  border-left: 3px solid var(--border-hover);
+  border: 1px solid var(--border-color);
+  border-left-width: 3px;
+  padding: 8px 12px;
+  border-radius: 0 4px 4px 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+  margin-top: 8px;
+}
+
+/* Tip / Warning Box (Monochrome) */
+.practice-warning-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: var(--badge-bg);
+  border: 1px solid var(--border-color);
+  border-left: 3px solid var(--text-muted);
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-top: 10px;
+}

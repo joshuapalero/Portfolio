@@ -1,0 +1,7 @@
+# Public content is accessible to search engines and AI agents
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+Sitemap: https://joshuapalero.com/sitemap.xml

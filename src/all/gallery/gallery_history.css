@@ -1,0 +1,536 @@
+/* ── Gallery History Page (Full Gallery View) ────────────────────────────── */
+.gallery-history-container {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  animation: galleryFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes galleryFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Back Button ─────────────────────────────────────────────────────────── */
+.gallery-history-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+  margin-bottom: 24px;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.gallery-history-back-btn:hover {
+  color: var(--text-primary);
+  transform: translateX(-3px);
+}
+
+/* ── Page Header ─────────────────────────────────────────────────────────── */
+.gallery-history-header {
+  margin-bottom: 32px;
+}
+
+.gallery-history-title-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.gallery-history-title {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.gallery-history-subtitle {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 680px;
+  margin: 0 0 20px 0;
+}
+
+/* ── Count Pill ────────────────────────────────────────────────────────── */
+.gallery-count-pill {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  padding: 4px 8px;
+  border-radius: 5px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+}
+
+/* ── Masonry & Grid Views ────────────────────────────────────────────────── */
+.gallery-history-masonry {
+  column-count: 3;
+  column-gap: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 860px) {
+  .gallery-history-masonry {
+    column-count: 2;
+    column-gap: 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .gallery-history-masonry {
+    column-count: 1;
+  }
+}
+
+.gallery-history-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: 20px;
+  align-items: start;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   GALLERY PAGE CARD (Vertically adjusting with picture at top)
+   ═══════════════════════════════════════════════════════════════════════════ */
+.gallery-page-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 12px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  height: auto; /* Vertically adjusts naturally based on description length */
+  align-self: start;
+  break-inside: avoid;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s ease,
+    border-color 0.25s ease;
+}
+
+.gallery-history-grid .gallery-page-card {
+  margin-bottom: 0;
+}
+
+.gallery-page-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-md);
+}
+
+body.theme-dark .gallery-page-card:hover,
+.theme-dark .gallery-page-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.38);
+}
+
+/* ── Fading Vercel Dot Background (Bottom Section of Gallery History Card) ── */
+.gallery-page-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55%;
+  pointer-events: none;
+  z-index: 1;
+  /* Light mode: subtle black dots ("not too much when lightmode") */
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.075) 1.15px, transparent 1.15px);
+  background-size: 15px 15px;
+  background-position: bottom right;
+  -webkit-mask-image: radial-gradient(ellipse 80% 85% at 100% 100%, black 15%, transparent 80%);
+  mask-image: radial-gradient(ellipse 80% 85% at 100% 100%, black 15%, transparent 80%);
+  opacity: 0.75;
+  transition: opacity 0.25s ease;
+}
+
+.gallery-page-card:hover::after {
+  opacity: 1;
+}
+
+/* Dark mode: crisp white dots */
+body.theme-dark .gallery-page-card::after,
+.theme-dark .gallery-page-card::after {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.18) 1.15px, transparent 1.15px);
+  opacity: 0.85;
+}
+
+body.theme-dark .gallery-page-card:hover::after,
+.theme-dark .gallery-page-card:hover::after {
+  opacity: 1;
+}
+
+/* ── Picture container: exact gallery picture size & aspect ratio ────────── */
+.gallery-card-image-wrap {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Same size aspect ratio as gallery section pictures */
+  border-radius: 5px;
+  overflow: hidden;
+  background: var(--badge-bg);
+  cursor: default;
+  border: 1px solid var(--border-color);
+  flex-shrink: 0;
+  outline: none;
+}
+
+.gallery-card-image-wrap:focus-visible {
+  box-shadow: 0 0 0 2px var(--accent-color);
+}
+
+.gallery-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-card-image-wrap:hover .gallery-card-image {
+  transform: none;
+}
+
+
+/* ── Card Content Body (Adjusts Vertically) ───────────────────────────────── */
+.gallery-card-body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  padding-top: 12px;
+  gap: 8px;
+  flex: 1;
+}
+
+
+/* Meta Row (Place & Date) */
+.gallery-card-meta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.gallery-card-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.3;
+}
+
+.gallery-card-meta-icon {
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.gallery-card-place-text {
+  word-break: break-word;
+}
+
+/* Description Block (Expands Vertically) */
+.gallery-card-desc-wrap {
+  margin-top: 4px;
+}
+
+.gallery-card-description {
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 0;
+  word-break: break-word;
+  white-space: pre-line;
+}
+
+.gallery-card-expand-btn {
+  background: transparent;
+  border: none;
+  padding: 4px 0 0 0;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: opacity 0.2s ease;
+}
+
+.gallery-card-expand-btn:hover {
+  opacity: 0.75;
+}
+
+/* Card Footer (Actions & Engagement) */
+.gallery-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  margin-top: 6px;
+  border-top: 1px solid var(--border-color);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.gallery-card-stats {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.gallery-card-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.gallery-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.gallery-card-link:hover {
+  color: var(--text-primary);
+  text-decoration: underline;
+}
+
+
+/* ── Empty & Error States ────────────────────────────────────────────────── */
+.gallery-empty-state {
+  text-align: center;
+  padding: 48px 20px;
+  background: var(--bg-card);
+  border: 1px dashed var(--border-color);
+  border-radius: 5px;
+  color: var(--text-muted);
+}
+
+.gallery-empty-state h3 {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+/* ── View All Button in Gallery Header ───────────────────────────────────── */
+.gallery-view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border-radius: 5px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.gallery-view-all-btn:hover {
+  border-color: transparent;
+  color: var(--text-primary);
+  background: var(--badge-bg);
+  transform: translateY(-1px);
+}
+
+/* ── Skeleton Loading Grid & Cards in Gallery History ───────────────────── */
+.gallery-skeleton-page-card {
+  pointer-events: none;
+  user-select: none;
+}
+
+.gallery-skeleton-page-card:hover {
+  transform: none;
+  border-color: var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.gallery-skeleton-page-card:hover::after {
+  opacity: 0.75;
+}
+
+body.theme-dark .gallery-skeleton-page-card:hover::after,
+.theme-dark .gallery-skeleton-page-card:hover::after {
+  opacity: 0.85;
+}
+
+.gallery-skeleton-image-wrap {
+  position: relative;
+  background: var(--badge-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-skeleton-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  color: var(--text-muted);
+  opacity: 0.65;
+}
+
+.gallery-skeleton-meta-place {
+  width: 52%;
+  height: 11px;
+}
+
+.gallery-skeleton-meta-date {
+  width: 36%;
+  height: 11px;
+}
+
+.gallery-skeleton-desc-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-top: 4px;
+}
+
+.gallery-skeleton-desc-line-1 {
+  width: 95%;
+  height: 11px;
+}
+
+.gallery-skeleton-desc-line-2 {
+  width: 82%;
+  height: 11px;
+}
+
+.gallery-skeleton-desc-line-3 {
+  width: 60%;
+  height: 11px;
+}
+
+.gallery-skeleton-footer {
+  border-top-color: var(--border-color);
+}
+
+.gallery-skeleton-stats {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.gallery-skeleton-stat-pill {
+  width: 38px;
+  height: 14px;
+  border-radius: 5px;
+}
+
+.gallery-skeleton-link-pill {
+  width: 64px;
+  height: 14px;
+  border-radius: 5px;
+}
+
+.gallery-loading-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+}
+
+.gallery-skeleton-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    var(--badge-bg) 25%,
+    var(--border-hover) 37%,
+    var(--badge-bg) 63%
+  );
+  background-size: 200% 100%;
+  animation: galleryShimmer 5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.gallery-skeleton-line,
+.gallery-skeleton-pill {
+  border-radius: 5px;
+  background: linear-gradient(
+    90deg,
+    var(--badge-bg) 25%,
+    var(--border-hover) 37%,
+    var(--badge-bg) 63%
+  );
+  background-size: 200% 100%;
+  animation: galleryShimmer 5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes galleryShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes gallerySpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.gallery-spinner {
+  animation: gallerySpin 0.9s linear infinite;
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-skeleton-shimmer,
+  .gallery-skeleton-line,
+  .gallery-skeleton-pill {
+    animation: none;
+    background: var(--border-hover);
+  }
+
+  .gallery-page-card::after {
+    transition: none;
+  }
+
+  .gallery-spinner {
+    animation-duration: 2.5s;
+  }
+}

@@ -1,0 +1,102 @@
+/* ── MarqueeText Pure CSS Architecture (Tailwind-Independent) ────── */
+
+.marquee-text-root {
+  position: relative;
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: block;
+  white-space: nowrap;
+  contain: layout paint;
+  content-visibility: auto;
+}
+
+.marquee-text-probe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  visibility: hidden;
+  white-space: normal;
+  pointer-events: none;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.marquee-text-mask {
+  position: relative;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  display: block;
+  white-space: nowrap;
+  contain: layout paint;
+}
+
+.auto-mask-horizontal {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden !important;
+  display: block;
+  white-space: nowrap;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.auto-mask-horizontal::-webkit-scrollbar {
+  display: none;
+}
+
+.marquee-text-track {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  width: max-content !important;
+  max-width: none !important;
+  white-space: nowrap !important;
+  flex-wrap: nowrap !important;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.marquee-text-item {
+  display: inline-block !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.marquee-text-spacer {
+  display: inline-block !important;
+  flex-shrink: 0 !important;
+}
+
+.marquee-text-static {
+  display: block;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Pause on hover so users can easily read or click links */
+.marquee-text-root:hover .marquee-text-track {
+  animation-play-state: paused;
+}
+
+/* Respect user accessibility preferences */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-text-track {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+

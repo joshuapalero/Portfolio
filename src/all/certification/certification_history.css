@@ -1,0 +1,408 @@
+/* ── Dedicated Certifications History Page View (Bryl Lim Design) ─── */
+.cert-history-container {
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  animation: certFadeIn 0.2s ease-in-out;
+}
+
+@keyframes certFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Back button matching ExperienceHistory & AllPosts */
+.cert-history-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+  margin-bottom: 24px;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.cert-history-back-btn:hover {
+  color: var(--text-primary);
+  transform: translateX(-3px);
+}
+
+/* Header matching Bryl Lim */
+.cert-history-header {
+  margin-bottom: 40px;
+}
+
+.cert-history-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.cert-history-header-badges {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cert-revalidating-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  background: var(--badge-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+
+.cert-history-title {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.cert-history-subtitle {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 640px;
+  margin: 0;
+}
+
+/* ── Timeline Rail Structure ───────────────────────────────────────── */
+.cert-history-timeline {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.cert-rail-item {
+  display: flex;
+  gap: 20px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 540px) {
+  .cert-rail-item {
+    gap: 12px;
+  }
+
+  .cert-logo-rail {
+    width: 36px;
+  }
+
+  .cert-logo-box {
+    width: 36px;
+    height: 36px;
+    border-radius: 5px;
+    font-size: 11px;
+  }
+
+  .cert-inner-rail {
+    margin-top: 10px;
+    margin-left: 0;
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .cert-inner-dot {
+    display: none;
+  }
+
+  .cert-rail-content {
+    padding-bottom: 28px;
+  }
+}
+
+/* Left Logo Rail */
+.cert-logo-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 48px;
+  flex-shrink: 0;
+}
+
+.cert-logo-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+  letter-spacing: 0.05em;
+}
+
+.cert-rail-line {
+  width: 1px;
+  flex: 1;
+  background-color: var(--border-color);
+  margin-top: 8px;
+  margin-bottom: 6px;
+}
+
+/* Right Content */
+.cert-rail-content {
+  flex: 1;
+  padding-bottom: 36px;
+  min-width: 0;
+}
+
+.cert-company-header {
+  margin-bottom: 12px;
+}
+
+.cert-company-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+  margin: 0 0 4px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cert-repo-anchor {
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.cert-repo-anchor:hover {
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.cert-company-type {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Inner Rail with Second Vertical Line */
+.cert-inner-rail {
+  position: relative;
+  padding-left: 20px;
+  border-left: 1px solid var(--border-color);
+  margin-left: 4px;
+  margin-top: 10px;
+}
+
+.cert-role-block {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cert-inner-dot {
+  position: absolute;
+  left: -24px;
+  top: 4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--border-hover);
+  border: 2px solid var(--bg-main, #ffffff);
+}
+
+body.theme-dark .cert-inner-dot,
+.theme-dark .cert-inner-dot {
+  border-color: #0d1117;
+  background-color: #6e7681;
+}
+
+.cert-role-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cert-role-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.35;
+  margin: 0;
+}
+
+.cert-verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 2px 7px;
+  border-radius: 9999px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.cert-duration-meta {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #9ca3af;
+  letter-spacing: 0.03em;
+  margin: 0;
+}
+
+body.theme-dark .cert-duration-meta,
+.theme-dark .cert-duration-meta {
+  color: #888888;
+}
+
+.cert-paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.cert-paragraphs p {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.cert-skills-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.cert-skill-pill {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 5px;
+  background: var(--badge-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+/* ── Skeleton Loading ──────────────────────────────────────────────── */
+.cert-history-loading {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 12px 0;
+}
+
+.cert-history-skeleton-item {
+  height: 100px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, var(--badge-bg) 25%, var(--badge-hover) 50%, var(--badge-bg) 75%);
+  background-size: 200% 100%;
+  animation: certHistoryShimmer 1.5s infinite;
+}
+
+@keyframes certHistoryShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Live Empty State Card from GitHub README.md ───────────────────── */
+.cert-history-empty-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 48px 24px;
+  border-radius: 5px;
+  background: var(--bg-card);
+  border: 1px dashed var(--border-color);
+  margin: 16px 0 32px 0;
+}
+
+.cert-history-empty-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 5px;
+  background: var(--badge-bg);
+  border: 1px solid var(--border-color);
+  color: #f59e0b;
+  margin-bottom: 16px;
+}
+
+.cert-history-empty-title {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+}
+
+.cert-history-empty-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin: 0 0 20px 0;
+}
+
+.cert-history-empty-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 5px;
+  background: var(--badge-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cert-history-empty-action:hover {
+  background: var(--badge-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-1px);
+}
+
