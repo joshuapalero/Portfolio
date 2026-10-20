@@ -10,6 +10,7 @@ build/
 .output/
 
 # Framework & Tooling internal caches
+.vercel
 .tanstack/
 .turbo/
 .cache/
