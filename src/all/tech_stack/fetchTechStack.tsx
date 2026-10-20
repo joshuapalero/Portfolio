@@ -488,25 +488,29 @@ export async function fetchTechStackFromGithub(
       const rows = buildBalancedRows(items);
       
       let realLastUpdated = new Date().toISOString();
-      try {
-        const headers: HeadersInit = { Accept: 'application/vnd.github.v3+json' };
-        if (token) headers.Authorization = `Bearer ${token}`;
-        
-        const repoInfo = await fetch(`https://api.github.com/repos/${resolvedUsername}/${fileResult.repo}`, {
-          headers,
-          signal: params.signal
-        }).catch(() => null);
-        
-        if (repoInfo && repoInfo.ok) {
-          const data = await repoInfo.json();
-          if (data.pushed_at) {
-            realLastUpdated = data.pushed_at;
-          } else if (data.updated_at) {
-            realLastUpdated = data.updated_at;
+      if (token) {
+        try {
+          const headers: HeadersInit = {
+            Accept: 'application/vnd.github.v3+json',
+            Authorization: `Bearer ${token}`,
+          };
+          
+          const repoInfo = await fetch(`https://api.github.com/repos/${resolvedUsername}/${fileResult.repo}`, {
+            headers,
+            signal: params.signal
+          }).catch(() => null);
+          
+          if (repoInfo && repoInfo.ok) {
+            const data = await repoInfo.json();
+            if (data.pushed_at) {
+              realLastUpdated = data.pushed_at;
+            } else if (data.updated_at) {
+              realLastUpdated = data.updated_at;
+            }
           }
+        } catch {
+          // Silently fallback to current date if fetch fails
         }
-      } catch {
-        // Silently fallback to current date if fetch fails
       }
 
       return {

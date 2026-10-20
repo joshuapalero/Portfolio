@@ -264,30 +264,30 @@ export async function fetchRawFileViaProxyOrDirect(
     }
   }
 
-  // Tier 4: GitHub REST API (CORS-enabled with raw accept header)
-  for (const repo of repoCandidates) {
-    try {
-      const apiHeaders: Record<string, string> = {
-        Accept: 'application/vnd.github.raw',
-      };
-      if (token) {
-        apiHeaders.Authorization = `Bearer ${token}`;
-      }
-      const apiRes = await fetch(
-        `https://api.github.com/repos/${encodeURIComponent(username)}/${encodeURIComponent(
-          repo
-        )}/readme`,
-        { headers: apiHeaders, signal, cache: 'no-cache' }
-      ).catch(() => null);
+  // Tier 4: GitHub REST API (Only if token is provided to prevent 403 unauthenticated rate limits)
+  if (token) {
+    for (const repo of repoCandidates) {
+      try {
+        const apiHeaders: Record<string, string> = {
+          Accept: 'application/vnd.github.raw',
+          Authorization: `Bearer ${token}`,
+        };
+        const apiRes = await fetch(
+          `https://api.github.com/repos/${encodeURIComponent(username)}/${encodeURIComponent(
+            repo
+          )}/readme`,
+          { headers: apiHeaders, signal, cache: 'no-cache' }
+        ).catch(() => null);
 
-      if (apiRes && apiRes.ok) {
-        const text = await apiRes.text();
-        if (text && text.trim() && !text.includes('404: Not Found')) {
-          return { text, repo, source: 'github-api' };
+        if (apiRes && apiRes.ok) {
+          const text = await apiRes.text();
+          if (text && text.trim() && !text.includes('404: Not Found')) {
+            return { text, repo, source: 'github-api' };
+          }
         }
+      } catch {
+        // Continue
       }
-    } catch {
-      // Continue
     }
   }
 

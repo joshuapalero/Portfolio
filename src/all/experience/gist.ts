@@ -449,21 +449,23 @@ export async function fetchExperienceFromGist(
     const { items, subtitle } = parseLiveExperienceReadme(fileResult.text, resolvedUsername);
     if (items.length > 0 || subtitle) {
       let realLastUpdated = new Date().toISOString();
-      try {
-        const repoRes = await fetch(`https://api.github.com/repos/${resolvedUsername}/${fileResult.repo}`, {
-          headers: token ? { Authorization: `Bearer ${token}` } : {},
-          signal: params.signal,
-        });
-        if (repoRes.ok) {
-          const repoData = await repoRes.json();
-          if (repoData.pushed_at) {
-            realLastUpdated = repoData.pushed_at;
-          } else if (repoData.updated_at) {
-            realLastUpdated = repoData.updated_at;
+      if (token) {
+        try {
+          const repoRes = await fetch(`https://api.github.com/repos/${resolvedUsername}/${fileResult.repo}`, {
+            headers: { Authorization: `Bearer ${token}` },
+            signal: params.signal,
+          });
+          if (repoRes.ok) {
+            const repoData = await repoRes.json();
+            if (repoData.pushed_at) {
+              realLastUpdated = repoData.pushed_at;
+            } else if (repoData.updated_at) {
+              realLastUpdated = repoData.updated_at;
+            }
           }
+        } catch {
+          // Fallback to current time if network fails
         }
-      } catch {
-        // Fallback to current time if network fails
       }
 
       return {
