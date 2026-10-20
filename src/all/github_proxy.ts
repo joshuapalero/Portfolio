@@ -8,14 +8,20 @@
  * 3. In local development without a worker, smoothly falls back to the direct GitHub REST API.
  */
 
-export function getWorkerBaseUrl(): string | undefined {
-  if (typeof import.meta === 'undefined' || !import.meta.env) return undefined;
-  const url =
-    import.meta.env.VITE_GITHUB_WORKER_URL ||
-    import.meta.env.VITE_WORKER_URL ||
-    import.meta.env.VITE_FB_WORKER_URL;
+export const DEFAULT_WORKER_URL = 'https://facebook-proxy.joshuapalero.workers.dev';
 
-  return url ? url.trim().replace(/\/+$/, '') : undefined;
+export function getWorkerBaseUrl(): string {
+  if (typeof import.meta !== 'undefined' && import.meta.env) {
+    const url =
+      import.meta.env.VITE_GITHUB_WORKER_URL ||
+      import.meta.env.VITE_WORKER_URL ||
+      import.meta.env.VITE_FB_WORKER_URL;
+
+    if (url && !url.includes('YOUR_SUBDOMAIN')) {
+      return url.trim().replace(/\/+$/, '');
+    }
+  }
+  return DEFAULT_WORKER_URL;
 }
 
 /**

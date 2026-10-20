@@ -28,14 +28,17 @@ const LOCAL_STORAGE_CHAT_KEY = 'portfolio_community_chat_local_v2';
 
 export function getChatApiUrl(): string | undefined {
   if (typeof window === 'undefined') return undefined;
-  if (typeof import.meta === 'undefined' || !import.meta.env) return undefined;
-  const url =
-    import.meta.env.VITE_CHAT_API_URL ||
-    import.meta.env.VITE_WORKER_URL ||
-    import.meta.env.VITE_FB_WORKER_URL;
+  if (typeof import.meta !== 'undefined' && import.meta.env) {
+    const url =
+      import.meta.env.VITE_CHAT_API_URL ||
+      import.meta.env.VITE_WORKER_URL ||
+      import.meta.env.VITE_FB_WORKER_URL;
 
-  if (!url || url.includes('YOUR_SUBDOMAIN')) return undefined;
-  return url.trim().replace(/\/+$/, '');
+    if (url && !url.includes('YOUR_SUBDOMAIN')) {
+      return url.trim().replace(/\/+$/, '');
+    }
+  }
+  return 'https://facebook-proxy.joshuapalero.workers.dev';
 }
 
 /**

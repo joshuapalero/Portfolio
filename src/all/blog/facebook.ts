@@ -122,14 +122,16 @@ export function isBlogStylePost(post: FacebookPost): boolean {
  * Fetches all live posts directly from the Cloudflare Worker proxy.
  * Throws explicit, descriptive errors when unconfigured or failing.
  */
+export const DEFAULT_WORKER_URL = 'https://facebook-proxy.joshuapalero.workers.dev';
+
 export async function fetchFacebookPosts(): Promise<readonly FacebookPost[]> {
-  const workerUrl = import.meta.env.VITE_FB_WORKER_URL;
+  const configured = import.meta.env.VITE_FB_WORKER_URL;
+  const workerUrl =
+    configured && !configured.includes('YOUR_SUBDOMAIN')
+      ? configured.trim().replace(/\/+$/, '')
+      : DEFAULT_WORKER_URL;
 
-  if (!workerUrl || workerUrl.includes('YOUR_SUBDOMAIN')) {
-    throw new Error('VITE_FB_WORKER_URL is not configured with your active Cloudflare Worker.');
-  }
-
-  const endpoint = `${workerUrl.replace(/\/+$/, '')}/api/facebook-posts`;
+  const endpoint = `${workerUrl}/api/facebook-posts`;
   const response = await fetch(endpoint, {
     method: 'GET',
     headers: {

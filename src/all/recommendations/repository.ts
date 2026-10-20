@@ -18,14 +18,17 @@ const USER_STORAGE_KEY = 'portfolio_user_recommendations_v2';
  */
 export function getRecommendationsApiUrl(): string | undefined {
   if (typeof window === 'undefined') return undefined;
-  if (typeof import.meta === 'undefined' || !import.meta.env) return undefined;
-  const url =
-    import.meta.env.VITE_RECOMMENDATIONS_API_URL ||
-    import.meta.env.VITE_WORKER_URL ||
-    import.meta.env.VITE_FB_WORKER_URL;
+  if (typeof import.meta !== 'undefined' && import.meta.env) {
+    const url =
+      import.meta.env.VITE_RECOMMENDATIONS_API_URL ||
+      import.meta.env.VITE_WORKER_URL ||
+      import.meta.env.VITE_FB_WORKER_URL;
 
-  if (!url || url.includes('YOUR_SUBDOMAIN')) return undefined;
-  return url.trim().replace(/\/+$/, '');
+    if (url && !url.includes('YOUR_SUBDOMAIN')) {
+      return url.trim().replace(/\/+$/, '');
+    }
+  }
+  return 'https://facebook-proxy.joshuapalero.workers.dev';
 }
 
 /**

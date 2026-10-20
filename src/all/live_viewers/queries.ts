@@ -144,14 +144,22 @@ export function getOrCreateTabId(): string {
   }
 }
 
+const DEFAULT_WORKER_URL = 'https://facebook-proxy.joshuapalero.workers.dev';
+
+export function getViewerWorkerBaseUrl(): string {
+  const configured = import.meta.env.VITE_FB_WORKER_URL;
+  if (configured && !configured.includes('YOUR_SUBDOMAIN')) {
+    return configured.trim().replace(/\/+$/, '');
+  }
+  return DEFAULT_WORKER_URL;
+}
+
 // ── Instant Leave Beacon Helper ──────────────────────────────────────────────
 export function sendLeaveSignal(deviceId: string): void {
   if (typeof window === 'undefined') return;
-  const workerUrl = import.meta.env.VITE_FB_WORKER_URL;
-  if (!workerUrl || workerUrl.includes('YOUR_SUBDOMAIN')) return;
+  const base = getViewerWorkerBaseUrl();
 
   try {
-    const base = workerUrl.replace(/\/+$/, '');
     const url = `${base}/api/viewers/leave`;
     const payload = JSON.stringify({ id: deviceId });
 
@@ -265,12 +273,10 @@ export async function fetchGeoLocation(): Promise<ViewerLocation> {
   const fallback = deriveFallbackLocation();
   let resolvedLocation: ViewerLocation = fallback;
 
-  // 2. Try first-party Cloudflare Worker /api/geo if configured
-  const workerUrl = import.meta.env.VITE_FB_WORKER_URL;
-  if (workerUrl && !workerUrl.includes('YOUR_SUBDOMAIN')) {
-    try {
-      const base = workerUrl.replace(/\/+$/, '');
-      const res = await fetch(`${base}/api/geo`, { method: 'GET', credentials: 'omit' });
+  // 2. Try first-party Cloudflare Worker /api/geo
+  try {
+    const base = getViewerWorkerBaseUrl();
+    const res = await fetch(`${base}/api/geo`, { method: 'GET', credentials: 'omit' });
       if (res.ok) {
         const data = (await res.json()) as { city?: string; country?: string; countryCode?: string };
         if (data && data.countryCode) {
@@ -292,7 +298,6 @@ export async function fetchGeoLocation(): Promise<ViewerLocation> {
     } catch {
       // Fall through to CORS-friendly public provider
     }
-  }
 
   // 3. Fallback: ipwho.is (CORS-friendly, no strict rate-limiting, never returns 429 without CORS headers)
   try {
@@ -398,18 +403,16 @@ export async function fetchLiveViewers(
   let uniqueVisitors: number | undefined;
 
   // 3. Global Cloudflare Worker + Upstash Redis synchronization
-  const workerUrl = import.meta.env.VITE_FB_WORKER_URL;
-  if (workerUrl && !workerUrl.includes('YOUR_SUBDOMAIN')) {
-    try {
-      const base = workerUrl.replace(/\/+$/, '');
-      const res = await fetch(`${base}/api/viewers`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...currentSession,
-          isNewVisit,
-        }),
-      });
+  try {
+    const base = getViewerWorkerBaseUrl();
+    const res = await fetch(`${base}/api/viewers`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ...currentSession,
+        isNewVisit,
+      }),
+    });
 
       if (res.ok) {
         const parsed = WorkerResponseSchema.safeParse(await res.json());
@@ -433,7 +436,6 @@ export async function fetchLiveViewers(
     } catch {
       // Gracefully maintain client session count and cached visits
     }
-  }
 
   return {
     count: Math.max(1, sessionCount),
